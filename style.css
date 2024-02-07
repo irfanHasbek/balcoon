@@ -1,0 +1,88 @@
+
+body {
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#cikti {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#resim-container {
+    display: flex;
+    align-items: center;
+}
+
+#resim {
+    max-width: 100%;
+    height: auto;
+}
+
+#varyasyonlar {
+    max-width: 50%;
+    margin-left: 20px;
+}
+
+#varyasyonlar label {
+    display: block;
+    margin-top: 10px;
+}
+
+.btn {
+    color: black !important;
+}
+
+.collapse-header {
+    cursor: pointer;
+}
+
+.icon-down {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+}
+
+.icon-up {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid;
+}
+
+.formBorder {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.infoBorderLeft{
+    border-left: 4px solid #ba5553;
+}
+
+.infoBorderLeft h5{
+    color: #ba5553;
+}
+
+form input{
+    height: 46px !important;
+    border-radius: 5px !important;
+    border: 1px solid #E8ECED !important;
+    background-color: #F7F9FA !important;
+    width: 100% !important;
+    margin-bottom: 24px !important;
+    padding: 0 12px !important;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out !important;
+}
