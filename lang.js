@@ -23,6 +23,12 @@ const languages = {
       'polikarbon-renkli2': 'Polikarbon Renkli 2',
       'polikarbon-seffaf3': 'Polikarbon Şeffaf 3',
       'cam1': 'Cam 1',
+      'hesapla': 'HESAPLA',
+      'nightmode': 'HESAPLA',
+      'adsoyad': 'Adınız ve soyadınız*',
+      'telefon': 'Telefon numaran*',
+      'eposta': 'E-posta adresiniz*',
+      'ikametyeri': 'İkamet ettiğiniz yer*',
       'metre': 'metre'
   },
   'en': {
@@ -49,11 +55,16 @@ const languages = {
       'polikarbon-renkli2': 'Polycarbonate Colored 2',
       'polikarbon-seffaf3': 'Polycarbonate Transparent 3',
       'cam1': 'Glass 1',
+      'hesapla': 'CALCULATE',
+      'adsoyad': 'Your name and surname*',
+      'telefon': 'Your phone number*',
+      'eposta': 'E-Mail Address*',
+      'ikametyeri': 'Your place of residence*',
       'yok': 'No'
   }
 };
 
-let currentLanguage = 'tr';
+let currentLanguage = 'en';
 
 function setLanguage(lang) {
   currentLanguage = lang;
@@ -63,9 +74,19 @@ function setLanguage(lang) {
 function updateTexts() {
   const elements = document.querySelectorAll('[data-translate]');
   elements.forEach(element => {
-      const key = element.getAttribute('data-translate');
-      element.textContent = languages[currentLanguage][key];
+    const key = element.getAttribute('data-translate');
+    const translation = languages[currentLanguage][key];
+    // Eğer placeholder özniteliği varsa güncelle
+    if (element.getAttribute('placeholder')) {
+      element.setAttribute('placeholder', translation);
+    } else {
+      element.textContent = translation;
+    }
   });
 }
 
+
 document.addEventListener('DOMContentLoaded', updateTexts);
+
+
+

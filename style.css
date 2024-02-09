@@ -22,11 +22,6 @@ body {
     height: auto;
 }
 
-#varyasyonlar {
-    max-width: 50%;
-    margin-left: 20px;
-}
-
 #varyasyonlar label {
     display: block;
     margin-top: 10px;
@@ -86,3 +81,18 @@ form input{
     padding: 0 12px !important;
     transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out !important;
 }
+
+@media only screen and (min-width: 992px) {
+    #varyasyonlar {
+        max-width: 50%;
+        /* margin-left: 20px; */
+    }
+
+    .formContainer{
+    box-shadow: 0 20px 40px rgba(61, 65, 84, 0.15);
+    border-radius: 7px;
+    background-color: #fff;
+    padding: 48px 110px;
+    width: 60% !important;
+    }
+  }
