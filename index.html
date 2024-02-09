@@ -31,7 +31,9 @@
 
                 <div class="accordion" id="accordionExample">
 
-                    <button type="button" class="btn btn-light my-2" onclick="toggleMode()" id="nightmode" style="color: black !important;">Gündüz Modu</button>
+                    <button type="button" class="btn btn-light my-2" onclick="toggleMode(true)" id="nightmode" style="color: black !important;">Gündüz Modu</button>
+
+                    <button type="button" class="btn btn-dark my-2" onclick="toggleMode()" id="nightmode" style="color: white !important;">Gece Modu</button>
 
 
                     <div class="accordion-item">
@@ -100,7 +102,7 @@
                         <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <select id="veranda-renk" class="form-control" onchange="updateOutput(true, true)">
+                                <select id="veranda-renk" class="form-control" onchange="updateOutput(false, false)">
                                     <option value="antrasit1" data-translate="antrasit1">Antrasit 1</option>
                                     <option value="beyaz2" data-translate="beyaz2">Beyaz 2</option>
                                 </select>
@@ -170,12 +172,12 @@
                                         Var
                                     </label>
                                 </div>
-                                <button type="button" onclick="showElement()" class="btn btn-primary mt-4"
-                                    style="color: white !important;" data-translate="hesapla">HESAPLA</button>
-
                             </div>
                         </div>
                     </div>
+
+                    <button type="button" onclick="showElement()" class="btn btn-primary my-3"
+                                    style="color: white !important;" data-translate="hesapla">HESAPLA</button>
 
 
                 </div>

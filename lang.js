@@ -64,7 +64,7 @@ const languages = {
   }
 };
 
-let currentLanguage = 'en';
+let currentLanguage = 'tr';
 
 function setLanguage(lang) {
   currentLanguage = lang;

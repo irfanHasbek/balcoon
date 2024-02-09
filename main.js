@@ -24,6 +24,7 @@ function updateOutput(type = false, nightMode = false) {
             verandaRenk.charAt(verandaRenk.length - 1) + "_" +
             ustCamTipi.charAt(ustCamTipi.length - 1) + "_" +
             onCamPanel + "_" + yanCam;
+            console.log(cikti)
 
         if (type == false) {
             document.getElementById('cikti').innerText = cikti;
@@ -73,6 +74,7 @@ function updateOutput(type = false, nightMode = false) {
         document.getElementById('ustcam-info').textContent = ustCamTipi == 'cam1' ? 'Cam 1' : ustCamTipi == 'polikarbon-renkli2' ? 'Polikarbon Renkli 2' : 'Polikarbon Şeffaf 3';
         document.getElementById('oncampanel-info').textContent = onCamPanel == 1 ? 'Var' : 'Yok';
         document.getElementById('yancamlar-info').textContent = yanCam == 1 ? 'Var' : 'Yok';
+
     }
 
 }
@@ -84,24 +86,24 @@ function showElement() {
     information.style.display = 'block';
     form.style.display = 'block';
 
-    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    form.scrollIntoView({ behavior: "smooth", block: "start" });updateOutput
 
 }
 
 
-function toggleMode() {
+function toggleMode(night = false) {
     var button = document.getElementById('nightmode');
-    if (button.innerText === 'Gece Modu') {
+    if (night == true) {
         button.innerText = 'Gündüz Modu';
-        button.classList.remove('btn-dark');
-        button.classList.add('btn-light');
-        button.style.setProperty('color', 'black', 'important'); // Change button text color to white in dark mode
+        // button.classList.remove('btn-dark');
+        // button.classList.add('btn-light');
+        // button.style.setProperty('color', 'black', 'important'); // Change button text color to white in dark mode
         updateOutput();
     } else {
         button.innerText = 'Gece Modu';
-        button.classList.remove('btn-light');
-        button.classList.add('btn-dark');
-        button.style.setProperty('color', 'white', 'important'); // Change button text color to white in dark mode
+        // button.classList.remove('btn-light');
+        // button.classList.add('btn-dark');
+        // button.style.setProperty('color', 'white', 'important'); // Change button text color to white in dark mode
 
 
         nightModeUpdate();
