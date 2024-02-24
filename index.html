@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <title>Varyasyon Seçici</title>
 
     <link rel="stylesheet" href="style.css">
@@ -18,37 +19,41 @@
 
 <body>
 
-
-    
-
     <div class="container mt-4">
         <div class="row" style="justify-content: space-between;">
-            <div class="col-md-8 p-0 m-0" id="resim-container">
-                <img src="image_1_1_1_1_0_0.jpg" alt="Ev Resmi" id="resim" class="img-fluid">
+            <div class="col-md-6 p-0 m-0" id="image-container">
+                <div style="position: relative;">
+                    <div class="switch-container">
+                        <input class="s-input" type="checkbox" id="nightMode" onchange="updateOutput(false)"/>
+                        <label for="nightMode" class="s-label">
+                           <i class="fas fa-sun"></i>
+                           <i class="fas fa-moon"></i>
+                           <span class="ball"></span>
+                        </label>
+                     </div>
+                    <img src="assets/icon.png" id="trade-marker" alt="">
+                    <img class="rounded" src="assets/light/image_1_1_1_1_0_0.jpg" alt="Ev Resmi" id="image"
+                        class="img-fluid">
+                </div>
             </div>
-            <div class="col-md-3 p-0 m-0 my-auto" id="varyasyonlar">
-                <div id="cikti" style="display: none;">image_1_1_1_1_0_0</div>
+            <div class="col-md-6 p-10 m-0" id="options-container">
 
-                <div class="accordion" id="accordionExample">
-
-                    <button type="button" class="btn btn-light my-2" onclick="toggleMode(true)" id="nightmode" style="color: black !important;">Gündüz Modu</button>
-
-                    <button type="button" class="btn btn-dark my-2" onclick="toggleMode()" id="nightmode" style="color: white !important;">Gece Modu</button>
-
+                <div class="accordion" id="accordingMCA">
 
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" data-translate="evTipi" aria-expanded="true" aria-controls="collapseOne">
+                                data-bs-target="#collapseBuildingType" data-translate="building-type"
+                                aria-expanded="true" aria-controls="collapseOne">
                             </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseBuildingType" class="accordion-collapse collapse show"
+                            aria-labelledby="headingOne" data-bs-parent="#accordingMCA">
                             <div class="accordion-body">
-                                <select id="ev-tipi" class="form-control" onchange="updateOutput()">
-                                    <option value="tek1" data-translate="tek1"></option>
-                                    <option value="çoklu2" data-translate="coklu2"></option>
-                                    <option value="köşe3" data-translate="kose3"></option>
+                                <select id="building-type" class="form-control" onchange="updateOutput(false)">
+                                    <option value="base-1" data-translate="base"></option>
+                                    <option value="ordered-2" data-translate="ordered"></option>
+                                    <option value="bend-3" data-translate="bend"></option>
                                 </select>
                             </div>
                         </div>
@@ -58,15 +63,16 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2" data-translate="genislikOlcusu">
+                                data-bs-target="#collapseVerandaWidth" aria-expanded="false" aria-controls="collapseTwo"
+                                data-translate="veranda-width">
                             </button>
                         </h2>
-                        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseVerandaWidth" class="accordion-collapse collapse" aria-labelledby="heading2"
+                            data-bs-parent="#accordingMCA">
                             <div class="accordion-body">
-                                <input type="range" id="genislik" class="form-control-range" min="5" max="12" value="5"
-                                    onchange="updateOutput()">
-                                <div id="genislik-deger">5</div>
+                                <input type="range" id="veranda-width" class="form-control-range" min="3" max="12"
+                                    value="3" onchange="updateOutput(false)">
+                                <div id="veranda-width-text">3</div>
                             </div>
                         </div>
                     </div>
@@ -74,80 +80,119 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7" data-translate="derinlikOlcusu">
-                                Click me
+                                data-bs-target="#collapseVerandaDepth" aria-expanded="false"
+                                aria-controls="collapseThree" data-translate="veranda-depth">
                             </button>
                         </h2>
-                        <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseVerandaDepth" class="accordion-collapse collapse" aria-labelledby="heading7"
+                            data-bs-parent="#accordingMCA">
                             <div class="accordion-body">
-                                <select name="cars" id="derinlik" onchange="updateOutput3()">
+                                <select class="form-control" id="veranda-depth">
                                     <option value="3" selected>3</option>
                                     <option value="4">4</option>
                                     <option value="4-5">4.5</option>
                                 </select>
-                                <!-- <div id="derinlik-deger">Seçilen Değer: 3</div> -->
                             </div>
                         </div>
                     </div>
 
-
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3" data-translate="verandaRengi">
-                                Veranda Rengi
+                                data-bs-target="#collapseVerandatype" aria-expanded="false" aria-controls="collapseFour"
+                                data-translate="veranda-type">
                             </button>
                         </h2>
-                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseVerandatype" class="accordion-collapse collapse" aria-labelledby="heading7"
+                            data-bs-parent="#accordingMCA">
                             <div class="accordion-body">
-                                <select id="veranda-renk" class="form-control" onchange="updateOutput(false, false)">
-                                    <option value="antrasit1" data-translate="antrasit1">Antrasit 1</option>
-                                    <option value="beyaz2" data-translate="beyaz2">Beyaz 2</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4" data-translate="ustCamTipi">
-                                Üst Cam Tipi
-                            </button>
-                        </h2>
-                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <select id="ust-cam-tipi" class="form-control" onchange="updateOutput(true, true)">
-                                    <option value="cam1" data-translate="cam1">Cam 1</option>
-                                    <option value="polikarbon-renkli2" data-translate="polikarbon-renkli2">Polikarbon Renkli 2</option>
-                                    <option value="polikarbon-seffaf3" data-translate="polikarbon-seffaf3">Polikarbon Şeffaf 3</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5" data-translate="onCamPanel">
-                                Ön Cam Panel
-                            </button>
-                        </h2>
-                        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="on-cam-panel"
-                                        onchange="updateOutput()" value="">
-                                    <label class="form-check-label" data-translate="var" for="flexCheckDefault">
-                                        Var
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons" id="veranda-type"
+                                    onchange="updateOutput(false)">
+                                    <label class="btn btn-info rounded-5 verandaType">
+                                        <input type="radio" name="veranda-type" id="standart" autocomplete="off"
+                                            value="standart" checked> <span data-translate="standart"></span>
                                     </label>
+                                    <label class="btn btn-light rounded-5 verandaType">
+                                        <input type="radio" name="veranda-type" id="pergamon" autocomplete="off"
+                                            value="pergamon"> <span data-translate="pergamon"></span>
+                                    </label>
+                                    <label class="btn btn-light rounded-5 verandaType">
+                                        <input type="radio" name="veranda-type" id="disassembled" autocomplete="off"
+                                            value="disassembled"> <span data-translate="disassembled"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseVerandaColor" aria-expanded="false"
+                                aria-controls="collapseFive" data-translate="veranda-color">
+                            </button>
+                        </h2>
+                        <div id="collapseVerandaColor" class="accordion-collapse collapse" aria-labelledby="heading3"
+                            data-bs-parent="#accordingMCA">
+                            <div class="accordion-body">
+                                <select id="veranda-color" class="form-control" onchange="updateOutput(false)">
+                                    <option value="antrasit" data-translate="colors.antrasit"></option>
+                                    <option value="white" data-translate="colors.white"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseVerandaRoofItemType" aria-expanded="false"
+                                aria-controls="collapseSix" data-translate="roof-glass-type">
+                            </button>
+                        </h2>
+                        <div id="collapseVerandaRoofItemType" class="accordion-collapse collapse"
+                            aria-labelledby="heading4" data-bs-parent="#accordingMCA">
+                            <div class="accordion-body">
+                                <select id="roof-item-type" class="form-control" onchange="updateOutput(true)">
+                                    <option value="1" data-translate="item.glass"></option>
+                                    <option value="2" data-translate="item.colorful-polycarbon"></option>
+                                    <option value="3" data-translate="item.transparent-polycarbon"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFrontItemType" aria-expanded="false"
+                                aria-controls="collapseSeven" data-translate="front-item-type">
+                            </button>
+                        </h2>
+                        <div id="collapseFrontItemType" class="accordion-collapse collapse" aria-labelledby="heading5"
+                            data-bs-parent="#accordingMCA">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="front-glass-type-exist"
+                                                onchange="updateOutput(false, true)">
+                                            <label class="form-check-label" data-translate="question.yes" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="front-glass-type-non-exist"
+                                                onchange="updateOutput(false, false)" checked>
+                                            <label class="form-check-label" data-translate="question.no" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
@@ -158,12 +203,13 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse6" aria-expanded="false" data-translate="yanCamlar" aria-controls="collapse6">
+                                data-bs-target="#collapse6" aria-expanded="false" data-translate="yanCamlar"
+                                aria-controls="collapse6">
                                 Yan Camlar
                             </button>
                         </h2>
                         <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6"
-                            data-bs-parent="#accordionExample">
+                            data-bs-parent="#accordingMCA">
                             <div class="accordion-body">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="yan-cam"
@@ -177,7 +223,7 @@
                     </div>
 
                     <button type="button" onclick="showElement()" class="btn btn-primary my-3"
-                                    style="color: white !important;" data-translate="hesapla">HESAPLA</button>
+                        style="color: white !important;" data-translate="hesapla">HESAPLA</button>
 
 
                 </div>
@@ -188,7 +234,7 @@
 
 
 
-    
+
 
     <!-- FORM -->
     <div class="container my-5 formContainer" id="form" style="display: none;">
@@ -196,34 +242,37 @@
             <div class="row justify-content-center">
                 <div class="mb-lg-3 col-md-6">
                     <label for="exampleInputEmail1" class="form-label"></label>
-                    <input type="text" class="form-control formBorder" data-translate="adsoyad" placeholder="Adınız ve soyadınız*" id="exampleInputEmail1"
-                        aria-describedby="emailHelp">
+                    <input type="text" class="form-control formBorder" data-translate="adsoyad"
+                        placeholder="Adınız ve soyadınız*" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-lg-3 col-md-6">
                     <label for="exampleInputPassword1" class="form-label"></label>
-                    <input type="number" class="form-control formBorder" data-translate="telefon" placeholder="Telefon numaran*" id="exampleInputPassword1">
+                    <input type="number" class="form-control formBorder" data-translate="telefon"
+                        placeholder="Telefon numaran*" id="exampleInputPassword1">
                 </div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="mb-lg-3 col-md-6">
                     <label for="exampleInputEmail1" class="form-label"></label>
-                    <input type="email" class="form-control formBorder" data-translate="eposta" placeholder="E-posta adresiniz *" id="exampleInputEmail1"
-                        aria-describedby="emailHelp">
+                    <input type="email" class="form-control formBorder" data-translate="eposta"
+                        placeholder="E-posta adresiniz *" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-lg-3 col-md-6">
                     <label for="" class="form-label"></label>
-                    <input type="text" class="form-control formBorder" data-translate="ikametyeri" placeholder="İkamet ettiğiniz yer *" id="">
+                    <input type="text" class="form-control formBorder" data-translate="ikametyeri"
+                        placeholder="İkamet ettiğiniz yer *" id="">
                 </div>
             </div>
 
             <div class="row justify-content-center">
 
 
-            <button type="submit" class="btn py-2 px-5 mt-4 mb-4 col-6"
-                style="background-color: #36c;color: white !important" onclick="formSubmit()" data-translate="gonder" >Gönder</button>
+                <button type="submit" class="btn py-2 px-5 mt-4 mb-4 col-6"
+                    style="background-color: #36c;color: white !important" onclick="formSubmit()"
+                    data-translate="gonder">Gönder</button>
             </div>
-            
+
         </form>
     </div>
 
@@ -298,8 +347,8 @@
 
 
 
-<script src="lang.js"></script>
-<script src="main.js"></script>
+    <script src="lang.js"></script>
+    <script src="main.js"></script>
     <script>
         // Kullanıcı dilini belirleyerek içeriği doldur
         setLanguage('tr'); // Veya setLanguage('en');
