@@ -19,10 +19,10 @@
 
 <body>
 
-    <div class="container mt-4">
+    <div class="container mt-2">
         <div class="row" style="justify-content: space-between;">
-            <div class="col-md-6 p-0 m-0" id="image-container">
-                <div style="position: relative;">
+            <div class="col-md-8 p-0 m-0" id="image-container">
+                <div style="position: relative;width: 100%;">
                     <div class="switch-container">
                         <input class="s-input" type="checkbox" id="nightMode" onchange="updateOutput(false)"/>
                         <label for="nightMode" class="s-label">
@@ -36,7 +36,7 @@
                         class="img-fluid">
                 </div>
             </div>
-            <div class="col-md-6 p-10 m-0" id="options-container">
+            <div class="col-md-4 p-10 m-0" id="options-container">
 
                 <div class="accordion" id="accordingMCA">
 
@@ -71,7 +71,7 @@
                             data-bs-parent="#accordingMCA">
                             <div class="accordion-body">
                                 <input type="range" id="veranda-width" class="form-control-range" min="3" max="12"
-                                    value="3" onchange="updateOutput(false)">
+                                    value="5" onchange="updateOutput(false)">
                                 <div id="veranda-width-text">3</div>
                             </div>
                         </div>
@@ -203,20 +203,92 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse6" aria-expanded="false" data-translate="yanCamlar"
-                                aria-controls="collapse6">
-                                Yan Camlar
+                                data-bs-target="#collapseSideWindow" aria-expanded="false" data-translate="sideWindowOptions"
+                                aria-controls="collapseEight">
                             </button>
                         </h2>
-                        <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6"
+                        <div id="collapseSideWindow" class="accordion-collapse collapse" aria-labelledby="heading6"
                             data-bs-parent="#accordingMCA">
                             <div class="accordion-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="yan-cam"
-                                        onchange="updateOutput()" value="">
-                                    <label class="form-check-label" data-translate="var" for="flexCheckDefault">
-                                        Var
-                                    </label>
+                                <div class="row p-10">
+                                    <p class="font-weight-bold" data-translate="spice">Spice</p>
+                                </div>
+                                <div class="row" style="margin-top: -20px;">
+                                    <div class="col-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowLeft"
+                                                onchange="changeSpice()" value="2">
+                                            <label class="form-check-label" data-translate="question.left" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowRight"
+                                                onchange="changeSpice()" value="3">
+                                            <label class="form-check-label" data-translate="question.right" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowNo"
+                                                onchange="changeSpice(true)" value="1" checked>
+                                            <label class="form-check-label" data-translate="question.no" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-4">
+                                    <p class="font-weight-bold" data-translate="aluminumWindow"></p>
+                                </div>
+                                <div class="row" style="margin-top: -20px;">
+                                    <div class="col-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowAluLeft" disabled
+                                                onchange="changeAluminum()" value="2">
+                                            <label class="form-check-label" data-translate="question.left" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowAluRight" disabled
+                                                onchange="changeAluminum()" value="3">
+                                            <label class="form-check-label" data-translate="question.right" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowAluNo" disabled
+                                                onchange="changeAluminum(true)" value="1" checked>
+                                            <label class="form-check-label" data-translate="question.no" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-4">
+                                    <p class="font-weight-bold" data-translate="glassWindow"></p>
+                                </div>
+                                <div class="row" style="margin-top: -20px;">
+                                    <div class="col-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassLeft" disabled
+                                                onchange="changeGlass()" value="2">
+                                            <label class="form-check-label" data-translate="question.left" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassRight" disabled
+                                                onchange="changeGlass()" value="3">
+                                            <label class="form-check-label" data-translate="question.right" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassNo" disabled
+                                                onchange="changeGlass(true)" value="1" checked>
+                                            <label class="form-check-label" data-translate="question.no" for="flexCheckDefault"></label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

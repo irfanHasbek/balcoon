@@ -55,6 +55,133 @@ function getFrontGlassType(verandaElem1, verandaElem2, selected) {
     }
 }
 
+function changeSpice(clickedNo = false) {
+    var noSpiceElem = document.getElementById('sideWindowNo');
+    var leftSpiceElem = document.getElementById('sideWindowLeft');
+    var rightSpiceElem = document.getElementById('sideWindowRight');
+
+    if (clickedNo) {
+        leftSpiceElem.checked = false;
+        rightSpiceElem.checked = false;
+    } else {
+        noSpiceElem.checked = false;
+    }
+
+    var noAluminumElem = document.getElementById('sideWindowAluNo');
+    var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+    var rightAluminumElem = document.getElementById('sideWindowAluRight');
+
+    var noGlassElem = document.getElementById('sideWindowGlassNo');
+    var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+    var rightGlassElem = document.getElementById('sideWindowGlassRight');
+
+    if (clickedNo) {
+        noAluminumElem.checked = true;
+        noAluminumElem.disabled = true;
+
+        leftAluminumElem.checked = false;
+        leftAluminumElem.disabled = true;
+
+        rightAluminumElem.checked = false;
+        rightAluminumElem.disabled = true;
+
+        noGlassElem.checked = true;
+        noGlassElem.disabled = true;
+
+        leftGlassElem.checked = false;
+        leftGlassElem.disabled = true;
+
+        rightGlassElem.checked = false;
+        rightGlassElem.disabled = true;
+
+    } else {
+        noAluminumElem.checked = true;
+        noAluminumElem.disabled = false;
+
+        noGlassElem.checked = true;
+        noGlassElem.disabled = false;
+
+        if (leftSpiceElem.checked) {
+            leftAluminumElem.checked = false;
+            leftAluminumElem.disabled = false;
+            rightAluminumElem.disabled = true;
+
+            leftGlassElem.checked = false;
+            leftGlassElem.disabled = false;
+            rightGlassElem.disabled = true;
+        }
+
+        if (rightSpiceElem.checked) {
+            rightAluminumElem.checked = false;
+            rightAluminumElem.disabled = false;
+            leftAluminumElem.disabled = true;
+
+            rightGlassElem.checked = false;
+            rightGlassElem.disabled = false;
+            leftGlassElem.disabled = true;
+        }
+
+        if (rightSpiceElem.checked && leftSpiceElem.checked) {
+            rightAluminumElem.checked = false;
+            rightAluminumElem.disabled = false;
+            leftAluminumElem.disabled = false;
+
+            rightGlassElem.checked = false;
+            rightGlassElem.disabled = false;
+            leftGlassElem.disabled = false;
+        }
+
+        if (!rightSpiceElem.checked && !leftSpiceElem.checked) {
+            rightAluminumElem.checked = false;
+            rightAluminumElem.disabled = true;
+            leftAluminumElem.disabled = true;
+
+            rightGlassElem.checked = false;
+            rightGlassElem.disabled = true;
+            leftGlassElem.disabled = true;
+
+            noSpiceElem.checked = true;
+            noAluminumElem.disabled = true;
+            noGlassElem.disabled = true;
+        }
+    }
+}
+
+function changeAluminum(clickedNo = false) {
+    var noAluminumElem = document.getElementById('sideWindowAluNo');
+    var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+    var rightAluminumElem = document.getElementById('sideWindowAluRight');
+
+    if (clickedNo) {
+        leftAluminumElem.checked = false;
+        rightAluminumElem.checked = false;
+    } else {
+        noAluminumElem.checked = false;
+    }
+}
+
+function changeGlass(clickedNo = false) {
+    var noGlassElem = document.getElementById('sideWindowGlassNo');
+    var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+    var rightGlassElem = document.getElementById('sideWindowGlassRight');
+
+    if (clickedNo) {
+        leftGlassElem.checked = false;
+        rightGlassElem.checked = false;
+    } else {
+        noGlassElem.checked = false;
+    }
+
+    updateOutput(false);
+}
+
+function getGlassPane(verandaElem1, verandaElem2) {
+    if (verandaElem1.checked || verandaElem2.checked) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
 function updateOutput(type = false, frontGlassItem) {
     console.log("update");
@@ -71,28 +198,30 @@ function updateOutput(type = false, frontGlassItem) {
             roofGlassType;
 
         document.getElementById('image').innerText = image;
-        document.getElementById('image').src = "assets/dark/" + image + ".jpg"; 
+        document.getElementById('image').src = "assets/dark/" + image + ".jpg";
         return;
     }
     else {
         var buildingTypeElem = document.getElementById('building-type');
         var verandaWidthElem = document.getElementById('veranda-width');
-        var verandaDepth = document.getElementById('veranda-depth').value;
+        var verandaDepthElem = document.getElementById('veranda-depth');
         var verandaColorElem = document.getElementById('veranda-color');
         var roofGlassTypeElem = document.getElementById('roof-item-type');
         var frontGlassExistElem = document.getElementById('front-glass-type-exist');
         var frontGlassNonExistElem = document.getElementById('front-glass-type-non-exist');
-        var yanCam = document.getElementById('yan-cam').checked ? 1 : 0;
+        var sideGlassPaneLeft = document.getElementById('sideWindowGlassLeft');
+        var sideGlassPaneright = document.getElementById('sideWindowGlassRight');
 
         var verandaWidth = calculateVerandaWidth(verandaWidthElem);
         var verandaColor = getVerandaColor(verandaColorElem);
         var roofGlassType = getRoofGlassType(roofGlassTypeElem);
         var frontGlassType = getFrontGlassType(frontGlassExistElem, frontGlassNonExistElem, frontGlassItem != null ? frontGlassItem : document.getElementById('front-glass-type-exist').checked ? true : false);
+        var sideGlassPane = getGlassPane(sideGlassPaneLeft, sideGlassPaneright);
 
         var image = "image_" + buildingTypeElem.value.charAt(buildingTypeElem.value.length - 1) + "_" + (verandaWidth) + "_" +
             verandaColor + "_" +
             roofGlassType + "_" +
-            frontGlassType + "_" + yanCam;
+            frontGlassType + "_" + sideGlassPane;
 
         var verandaType = $("input[name='veranda-type']:checked").val();
         if (verandaType != null) {
@@ -132,33 +261,39 @@ function updateOutput(type = false, frontGlassItem) {
             document.getElementById('veranda-width-text').textContent = verandaWidthElem.value;
         }
 
-        // var derinlikSelect = verandaDepth;
+        var currentVerandaDepthValue = verandaDepthElem.value;
+        // Option değerlerini temizle
+        verandaDepthElem.innerHTML = verandaDepthElem.value;
 
-        // // Option değerlerini temizle
-        // derinlikSelect.innerHTML = derinlikSelect.value;
+        // Yeni option değerlerini ekle
+        if (roofGlassType === 1) {
+            addOption(verandaDepthElem, "3", "3");
+            addOption(verandaDepthElem, "4", "4");
+            addOption(verandaDepthElem, "4.5", "4.5");
 
-        // // Yeni option değerlerini ekle
-        // if (ustCamTipi === "cam1") {
-        //     addOption(derinlikSelect, "3", "3");
-        //     addOption(derinlikSelect, "4", "4");
-        //     addOption(derinlikSelect, "4.5", "4.5");
+        } else {
+            addOption(verandaDepthElem, "3", "3");
+            addOption(verandaDepthElem, "4", "4");
+            addOption(verandaDepthElem, "5", "5");
+            addOption(verandaDepthElem, "6", "6");
+        }
 
-        // } else {
-        //     addOption(derinlikSelect, "3", "3");
-        //     addOption(derinlikSelect, "4", "4");
-        //     addOption(derinlikSelect, "5", "5");
-        //     addOption(derinlikSelect, "6", "6");
-        // }
+        if (roofGlassType === 2) {
+            verandaDepthElem.value = currentVerandaDepthValue;
+        } else {
+            if (currentVerandaDepthValue < 5) {
+                verandaDepthElem.value = currentVerandaDepthValue;
+            } else {
+                verandaDepthElem.value = 3;
+            }
+        }
 
-        // document.getElementById("derinlik-deger").innerText = "Seçilen Değer: " + derinlikSelect.value;
-
-
-        // function addOption(selectElement, value, text) {
-        //     var option = document.createElement("option");
-        //     option.value = value;
-        //     option.text = text;
-        //     selectElement.add(option);
-        // }
+        function addOption(selectElement, value, text) {
+            var option = document.createElement("option");
+            option.value = value;
+            option.text = text;
+            selectElement.add(option);
+        }
 
         // document.getElementById('ev-info').textContent = buildingType == 'tek1' ? 'Tek 1' : evTipi == 'çoklu2' ? 'Çoklu 2' : 'Köşe 3';
         // document.getElementById('genislik-info').textContent = genislik;

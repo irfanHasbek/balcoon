@@ -4,6 +4,9 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    padding-left: 250px;
+    padding-right: 250px;
+    overflow-x: hidden;
 }
 
 #cikti {
@@ -18,11 +21,14 @@ body {
 
 #image {
     max-width: 100%;
+    width: 100%;
     height: auto;
+    background-size: cover;
 }
 
 #trade-marker {
     max-width: 100%;
+    width: 100%;
     height: auto;
     position: absolute;
 }
