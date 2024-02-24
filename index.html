@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <title>Varyasyon Seçici</title>
 
     <link rel="stylesheet" href="style.css">
@@ -21,20 +21,65 @@
 
     <div class="container mt-2">
         <div class="row" style="justify-content: space-between;">
-            <div class="col-md-8 p-0 m-0" id="image-container">
-                <div style="position: relative;width: 100%;">
-                    <div class="switch-container">
-                        <input class="s-input" type="checkbox" id="nightMode" onchange="updateOutput(false)"/>
-                        <label for="nightMode" class="s-label">
-                           <i class="fas fa-sun"></i>
-                           <i class="fas fa-moon"></i>
-                           <span class="ball"></span>
-                        </label>
-                     </div>
-                    <img src="assets/icon.png" id="trade-marker" alt="">
-                    <img class="rounded" src="assets/light/image_1_1_1_1_0_0.jpg" alt="Ev Resmi" id="image"
-                        class="img-fluid">
+            <div class="col-md-8 p-0 m-0">
+                <div class="row">
+                    <div style="position: relative;width: 100%;">
+                        <div class="switch-container">
+                            <input class="s-input" type="checkbox" id="nightMode" onchange="updateOutput(false)" />
+                            <label for="nightMode" class="s-label">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                                <span class="ball"></span>
+                            </label>
+                        </div>
+                        <img src="assets/icon.png" id="trade-marker" alt="">
+                        <img class="rounded" src="assets/light/image_1_1_1_1_0_0.jpg" alt="Ev Resmi" id="image"
+                            class="img-fluid">
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="container my-5 " id="form" style="display: none;">
+                        <form>
+                            <div class="row justify-content-center">
+                                <div class="mb-lg-3 col-md-6">
+                                    <label for="exampleInputEmail1" class="form-label"></label>
+                                    <input type="text" class="form-control formBorder" data-translate="adsoyad"
+                                        placeholder="Adınız ve soyadınız*" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp">
+                                </div>
+                                <div class="mb-lg-3 col-md-6">
+                                    <label for="exampleInputPassword1" class="form-label"></label>
+                                    <input type="number" class="form-control formBorder" data-translate="telefon"
+                                        placeholder="Telefon numaran*" id="exampleInputPassword1">
+                                </div>
+                            </div>
+    
+                            <div class="row justify-content-center">
+                                <div class="mb-lg-3 col-md-6">
+                                    <label for="exampleInputEmail1" class="form-label"></label>
+                                    <input type="email" class="form-control formBorder" data-translate="eposta"
+                                        placeholder="E-posta adresiniz *" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp">
+                                </div>
+                                <div class="mb-lg-3 col-md-6">
+                                    <label for="" class="form-label"></label>
+                                    <input type="text" class="form-control formBorder" data-translate="ikametyeri"
+                                        placeholder="İkamet ettiğiniz yer *" id="">
+                                </div>
+                            </div>
+    
+                            <div class="row pl-3">
+                                <button type="submit" class="btn py-2 px-5 mt-4 mb-4 col-6"
+                                    style="background-color: #36c;color: white !important" onclick="formSubmit()"
+                                    data-translate="gonder">Gönder</button>
+                            </div>
+    
+                        </form>
+                    </div>
+                </div>
+                <!-- FORM -->
+                
             </div>
             <div class="col-md-4 p-10 m-0" id="options-container">
 
@@ -181,18 +226,21 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="front-glass-type-exist"
                                                 onchange="updateOutput(false, true)">
-                                            <label class="form-check-label" data-translate="question.yes" for="flexCheckDefault"></label>
+                                            <label class="form-check-label" data-translate="question.yes"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="front-glass-type-non-exist"
-                                                onchange="updateOutput(false, false)" checked>
-                                            <label class="form-check-label" data-translate="question.no" for="flexCheckDefault"></label>
+                                            <input class="form-check-input" type="checkbox"
+                                                id="front-glass-type-non-exist" onchange="updateOutput(false, false)"
+                                                checked>
+                                            <label class="form-check-label" data-translate="question.no"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                             </div>
                         </div>
@@ -203,8 +251,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseSideWindow" aria-expanded="false" data-translate="sideWindowOptions"
-                                aria-controls="collapseEight">
+                                data-bs-target="#collapseSideWindow" aria-expanded="false"
+                                data-translate="sideWindowOptions" aria-controls="collapseEight">
                             </button>
                         </h2>
                         <div id="collapseSideWindow" class="accordion-collapse collapse" aria-labelledby="heading6"
@@ -218,21 +266,24 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="sideWindowLeft"
                                                 onchange="changeSpice()" value="2">
-                                            <label class="form-check-label" data-translate="question.left" for="flexCheckDefault"></label>
+                                            <label class="form-check-label" data-translate="question.left"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="sideWindowRight"
                                                 onchange="changeSpice()" value="3">
-                                            <label class="form-check-label" data-translate="question.right" for="flexCheckDefault"></label>
+                                            <label class="form-check-label" data-translate="question.right"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="sideWindowNo"
                                                 onchange="changeSpice(true)" value="1" checked>
-                                            <label class="form-check-label" data-translate="question.no" for="flexCheckDefault"></label>
+                                            <label class="form-check-label" data-translate="question.no"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -243,23 +294,26 @@
                                 <div class="row" style="margin-top: -20px;">
                                     <div class="col-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="sideWindowAluLeft" disabled
-                                                onchange="changeAluminum()" value="2">
-                                            <label class="form-check-label" data-translate="question.left" for="flexCheckDefault"></label>
+                                            <input class="form-check-input" type="checkbox" id="sideWindowAluLeft"
+                                                disabled onchange="changeAluminum()" value="2">
+                                            <label class="form-check-label" data-translate="question.left"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="sideWindowAluRight" disabled
-                                                onchange="changeAluminum()" value="3">
-                                            <label class="form-check-label" data-translate="question.right" for="flexCheckDefault"></label>
+                                            <input class="form-check-input" type="checkbox" id="sideWindowAluRight"
+                                                disabled onchange="changeAluminum()" value="3">
+                                            <label class="form-check-label" data-translate="question.right"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="sideWindowAluNo" disabled
-                                                onchange="changeAluminum(true)" value="1" checked>
-                                            <label class="form-check-label" data-translate="question.no" for="flexCheckDefault"></label>
+                                            <input class="form-check-input" type="checkbox" id="sideWindowAluNo"
+                                                disabled onchange="changeAluminum(true)" value="1" checked>
+                                            <label class="form-check-label" data-translate="question.no"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -270,23 +324,26 @@
                                 <div class="row" style="margin-top: -20px;">
                                     <div class="col-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassLeft" disabled
-                                                onchange="changeGlass()" value="2">
-                                            <label class="form-check-label" data-translate="question.left" for="flexCheckDefault"></label>
+                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassLeft"
+                                                disabled onchange="changeGlass()" value="2">
+                                            <label class="form-check-label" data-translate="question.left"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassRight" disabled
-                                                onchange="changeGlass()" value="3">
-                                            <label class="form-check-label" data-translate="question.right" for="flexCheckDefault"></label>
+                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassRight"
+                                                disabled onchange="changeGlass()" value="3">
+                                            <label class="form-check-label" data-translate="question.right"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassNo" disabled
-                                                onchange="changeGlass(true)" value="1" checked>
-                                            <label class="form-check-label" data-translate="question.no" for="flexCheckDefault"></label>
+                                            <input class="form-check-input" type="checkbox" id="sideWindowGlassNo"
+                                                disabled onchange="changeGlass(true)" value="1" checked>
+                                            <label class="form-check-label" data-translate="question.no"
+                                                for="flexCheckDefault"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -305,54 +362,9 @@
     </div>
 
 
-
-
-
-    <!-- FORM -->
-    <div class="container my-5 formContainer" id="form" style="display: none;">
-        <form>
-            <div class="row justify-content-center">
-                <div class="mb-lg-3 col-md-6">
-                    <label for="exampleInputEmail1" class="form-label"></label>
-                    <input type="text" class="form-control formBorder" data-translate="adsoyad"
-                        placeholder="Adınız ve soyadınız*" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-lg-3 col-md-6">
-                    <label for="exampleInputPassword1" class="form-label"></label>
-                    <input type="number" class="form-control formBorder" data-translate="telefon"
-                        placeholder="Telefon numaran*" id="exampleInputPassword1">
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="mb-lg-3 col-md-6">
-                    <label for="exampleInputEmail1" class="form-label"></label>
-                    <input type="email" class="form-control formBorder" data-translate="eposta"
-                        placeholder="E-posta adresiniz *" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-lg-3 col-md-6">
-                    <label for="" class="form-label"></label>
-                    <input type="text" class="form-control formBorder" data-translate="ikametyeri"
-                        placeholder="İkamet ettiğiniz yer *" id="">
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-
-
-                <button type="submit" class="btn py-2 px-5 mt-4 mb-4 col-6"
-                    style="background-color: #36c;color: white !important" onclick="formSubmit()"
-                    data-translate="gonder">Gönder</button>
-            </div>
-
-        </form>
-    </div>
-
-
-
     <!-- INFORMATION -->
 
-    <div class="container pb-5" id="information" style="display: none;">
+    <!-- <div class="container pb-5" id="information" style="display: none;">
         <div class="row">
             <div class="col-md-4 col-6 infoBorderLeft">
                 <div>
@@ -397,7 +409,7 @@
 
         </div>
 
-    </div>
+    </div> -->
 
 
 

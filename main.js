@@ -307,10 +307,10 @@ function updateOutput(type = false, frontGlassItem) {
 }
 
 function showElement() {
-    var information = document.getElementById('information');
+    // var information = document.getElementById('information');
     var form = document.getElementById('form');
 
-    information.style.display = 'block';
+    // information.style.display = 'block';
     form.style.display = 'block';
 
     form.scrollIntoView({ behavior: "smooth", block: "start" }); updateOutput

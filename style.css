@@ -14,10 +14,10 @@ body {
     margin-bottom: 20px;
 }
 
-#image-container {
+/* #image-container {
     display: flex;
     align-items: center;
-}
+} */
 
 #image {
     max-width: 100%;
@@ -110,7 +110,7 @@ form input {
 
 .switch-container {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 10px;
     z-index: 1000;
 }
