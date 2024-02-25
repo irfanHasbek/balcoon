@@ -14,12 +14,12 @@ const languages = {
       'spice': 'Spice',
       'aluminumWindow': 'Aluminyum Panel',
       'glassWindow': 'Cam Panel',
-      'adSoyad': 'Adınız ve Soyadınız',
-      'telefonNumarasi': 'Telefon Numaranız',
-      'epostaAdresi': 'E-posta Adresiniz',
-      'ikametYeri': 'İkamet Ettiğiniz Yer',
-      'gonder': 'Gönder',
-      'dilSecenekleri': 'Dil Seçenekleri',
+      'fullname': 'Adınız ve Soyadınız',
+      'telephone': 'Telefon Numaranız',
+      'email': 'E-posta Adresiniz',
+      'address': 'İkamet Ettiğiniz Yer',
+      'submit': 'Gönder',
+      'languageOptions': 'Dil Seçenekleri',
       'base': 'Müstakil',
       'ordered': 'Sıralı',
       'bend': 'Köşe',
@@ -34,7 +34,7 @@ const languages = {
       'question.no': 'Yok',
       'question.right' : 'Sağ',
       'question.left': 'Sol',
-      'hesapla': 'HESAPLA',
+      'calculatePrice': 'HESAPLA',
       'display_mode': 'Gündüz Modu',
       'adsoyad': 'Adınız ve soyadınız*',
       'telefon': 'Telefon numaran*',
@@ -42,7 +42,8 @@ const languages = {
       'ikametyeri': 'İkamet ettiğiniz yer*',
       'metre': 'metre',
       'colors.antrasit': 'Antrasit', 
-      'colors.white': 'Beyaz' 
+      'colors.white': 'Beyaz',
+      'resultMessage': 'vergi ve kurulum dahil' 
   }
 };
 
@@ -58,12 +59,9 @@ function updateTexts() {
   elements.forEach(element => {
     const key = element.getAttribute('data-translate');
     const translation = languages[currentLanguage][key];
-    // Eğer placeholder özniteliği varsa güncelle
-    if (element.getAttribute('placeholder')) {
-      element.setAttribute('placeholder', translation);
-    } else {
-      element.textContent = translation;
-    }
+
+    element.setAttribute('placeholder', translation);
+    element.textContent = translation;
   });
 }
 

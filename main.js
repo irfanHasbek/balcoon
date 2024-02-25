@@ -183,6 +183,57 @@ function getGlassPane(verandaElem1, verandaElem2) {
     }
 }
 
+function calculatePrice() {
+    var verandaWidthElem = document.getElementById('veranda-width');
+    var verandaDepthElem = document.getElementById('veranda-depth');
+    var roofGlassTypeElem = document.getElementById('roof-item-type');
+
+    var verandaWidth = verandaWidthElem.value;
+    var verandaDepth = verandaDepthElem.value;
+    var verandaType = $("input[name='veranda-type']:checked").val();
+    var roofGlassType = getRoofGlassType(roofGlassTypeElem);
+
+    var resultPrice = 0;
+
+    var dimensions = verandaWidth + 'x' + verandaDepth;
+    if(verandaType == 'standart' || verandaType == 'disassembled') {
+        if(roofGlassType == 1) {
+            resultPrice = prices['standart']['glass']['dimension_3_side_2'][dimensions];
+        }else if(roofGlassType == 2) {
+            resultPrice = prices['standart']['polycarbon']['dimension_3_side_2'][dimensions];
+        }else {
+            resultPrice = prices['standart']['transparent']['dimension_3_side_2'][dimensions];
+        }
+    }else {
+        if(roofGlassType == 1) {
+            resultPrice = prices['pergamon']['glass']['dimension_3_side_2'][dimensions];
+        }else if(roofGlassType == 2) {
+            resultPrice = prices['pergamon']['polycarbon']['dimension_3_side_2'][dimensions];
+        }else {
+            resultPrice = prices['pergamon']['transparent']['dimension_3_side_2'][dimensions];
+        }
+    }
+
+     // var information = document.getElementById('information');
+     var form = document.getElementById('form');
+
+     // information.style.display = 'block';
+     form.style.display = 'block';
+ 
+     form.scrollIntoView({ behavior: "smooth", block: "start" }); updateOutput
+     
+     var priceBoxElem = document.getElementsByClassName('price-box');
+     var resultSpanElem = document.getElementById('price-result');
+     var calculateButtonElem = document.getElementById('calculateButton');
+
+     resultSpanElem.textContent = '€ ' + parseFloat(resultPrice).toFixed(2) + ' - ' + languages[currentLanguage]['resultMessage'];
+
+     calculateButtonElem.style.display = 'none';
+     priceBoxElem[0].style.display = 'inline-flex';
+
+    console.log(resultPrice);
+}
+
 function updateOutput(type = false, frontGlassItem) {
     console.log("update");
     var nightMode = document.getElementById('nightMode').checked;
@@ -269,7 +320,7 @@ function updateOutput(type = false, frontGlassItem) {
         if (roofGlassType === 1) {
             addOption(verandaDepthElem, "3", "3");
             addOption(verandaDepthElem, "4", "4");
-            addOption(verandaDepthElem, "4.5", "4.5");
+            addOption(verandaDepthElem, "5", "5");
 
         } else {
             addOption(verandaDepthElem, "3", "3");
@@ -306,20 +357,6 @@ function updateOutput(type = false, frontGlassItem) {
 
 }
 
-function showElement() {
-    // var information = document.getElementById('information');
-    var form = document.getElementById('form');
-
-    // information.style.display = 'block';
-    form.style.display = 'block';
-
-    form.scrollIntoView({ behavior: "smooth", block: "start" }); updateOutput
-
-}
-
-
-
-
 function formSubmit() {
     /// Formun submit olayını dinle
     document.querySelector('form').addEventListener('submit', function (event) {
@@ -330,7 +367,6 @@ function formSubmit() {
     });
 
 }
-
 
 function loadImageAndSend() {
     // Resmi bir <img> etiketi üzerinden yükle

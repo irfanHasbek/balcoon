@@ -44,42 +44,40 @@
                             <div class="row justify-content-center">
                                 <div class="mb-lg-3 col-md-6">
                                     <label for="exampleInputEmail1" class="form-label"></label>
-                                    <input type="text" class="form-control formBorder" data-translate="adsoyad"
-                                        placeholder="Adınız ve soyadınız*" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp">
+                                    <input type="text" class="form-control formBorder" data-translate="fullname"
+                                        placeholder="" id="exampleInputEmail1" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-lg-3 col-md-6">
                                     <label for="exampleInputPassword1" class="form-label"></label>
-                                    <input type="number" class="form-control formBorder" data-translate="telefon"
-                                        placeholder="Telefon numaran*" id="exampleInputPassword1">
+                                    <input type="number" class="form-control formBorder" data-translate="telephone"
+                                        placeholder="" id="exampleInputPassword1">
                                 </div>
                             </div>
-    
-                            <div class="row justify-content-center">
+
+                            <div class="row justify-content-center" style="margin-top: -30px;">
                                 <div class="mb-lg-3 col-md-6">
                                     <label for="exampleInputEmail1" class="form-label"></label>
-                                    <input type="email" class="form-control formBorder" data-translate="eposta"
-                                        placeholder="E-posta adresiniz *" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp">
+                                    <input type="email" class="form-control formBorder" data-translate="email"
+                                        placeholder="" id="exampleInputEmail1" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-lg-3 col-md-6">
                                     <label for="" class="form-label"></label>
-                                    <input type="text" class="form-control formBorder" data-translate="ikametyeri"
-                                        placeholder="İkamet ettiğiniz yer *" id="">
+                                    <input type="text" class="form-control formBorder" data-translate="address"
+                                        placeholder="" id="">
                                 </div>
                             </div>
-    
-                            <div class="row pl-3">
+
+                            <div class="row pl-3" style="margin-top: -20px;width: 98%;">
                                 <button type="submit" class="btn py-2 px-5 mt-4 mb-4 col-6"
                                     style="background-color: #36c;color: white !important" onclick="formSubmit()"
-                                    data-translate="gonder">Gönder</button>
+                                    data-translate="submit"></button>
                             </div>
-    
+
                         </form>
                     </div>
                 </div>
                 <!-- FORM -->
-                
+
             </div>
             <div class="col-md-4 p-10 m-0" id="options-container">
 
@@ -117,7 +115,7 @@
                             <div class="accordion-body">
                                 <input type="range" id="veranda-width" class="form-control-range" min="3" max="12"
                                     value="5" onchange="updateOutput(false)">
-                                <div id="veranda-width-text">3</div>
+                                <div id="veranda-width-text">5</div>
                             </div>
                         </div>
                     </div>
@@ -135,7 +133,7 @@
                                 <select class="form-control" id="veranda-depth">
                                     <option value="3" selected>3</option>
                                     <option value="4">4</option>
-                                    <option value="4-5">4.5</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
                         </div>
@@ -351,10 +349,14 @@
                         </div>
                     </div>
 
-                    <button type="button" onclick="showElement()" class="btn btn-primary my-3"
-                        style="color: white !important;" data-translate="hesapla">HESAPLA</button>
+                </div>
+                <div class="row p-3">
+                    <button id="calculateButton" type="button" onclick="calculatePrice()" class="btn btn-primary my-3"
+                        style="color: white !important;" data-translate="calculatePrice"></button>
+                </div>
 
-
+                <div class="row m-2 price-box" style="display: none;">
+                    <span id="price-result"></span>
                 </div>
             </div>
         </div>
@@ -432,6 +434,7 @@
 
 
     <script src="lang.js"></script>
+    <script src="prices.js"></script>
     <script src="main.js"></script>
     <script>
         // Kullanıcı dilini belirleyerek içeriği doldur
