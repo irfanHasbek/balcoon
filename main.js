@@ -277,12 +277,9 @@ function calculatePrice() {
 
      calculateButtonElem.style.display = 'none';
      priceBoxElem[0].style.display = 'inline-flex';
-
-    console.log(resultPrice);
 }
 
 function updateOutput(type = false, frontGlassItem) {
-    console.log("update");
     var nightMode = document.getElementById('nightMode').checked;
 
     if (nightMode) {
@@ -347,7 +344,6 @@ function updateOutput(type = false, frontGlassItem) {
         }
 
         if (!type) {
-            // console.log(image)
             document.getElementById('image').src = "assets/light/" + image + ".jpg"; // İmage path'i buraya uygun olarak güncellenmeli
             document.getElementById('veranda-width-text').textContent = verandaWidthElem.value;
         }
@@ -435,10 +431,10 @@ function loadImageAndSend() {
     var roofGlassExist = frontGlassExistElem.checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no'];
     var sidePane = languages[currentLanguage]['sideWindowOptions'] + ': ';
 
-    if(leftAluminumElem.checked) sidePane += languages[currentLanguage]['direction.left'] + languages[currentLanguage]['aluminumWindow'] + ' ';
-    if(rightAluminumElem.checked) sidePane += languages[currentLanguage]['direction.right'] + languages[currentLanguage]['aluminumWindow'] + ' ';
-    if(leftGlassElem.checked) sidePane += languages[currentLanguage]['direction.left'] + languages[currentLanguage]['glassWindow'] + ' ';
-    if(rightGlassElem.checked) sidePane += languages[currentLanguage]['direction.right'] + languages[currentLanguage]['glassWindow'] + ' ';
+    if(leftAluminumElem.checked) sidePane += languages[currentLanguage]['direction.left'] + ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
+    if(rightAluminumElem.checked) sidePane += languages[currentLanguage]['direction.right'] +  ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
+    if(leftGlassElem.checked) sidePane += languages[currentLanguage]['direction.left'] +  ' ' + languages[currentLanguage]['glassWindow'] + ' ';
+    if(rightGlassElem.checked) sidePane += languages[currentLanguage]['direction.right'] +  ' ' + languages[currentLanguage]['glassWindow'] + ' ';
 
     // Resmi bir <img> etiketi üzerinden yükle
     var img = new Image();
