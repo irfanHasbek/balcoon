@@ -183,6 +183,17 @@ function getGlassPane(verandaElem1, verandaElem2) {
     }
 }
 
+$(document).ready(() => {
+    if(window.location.search != '') {
+        var lang = window.location.search.split('=').pop();
+        if(lang == undefined) {
+            setLanguage('tr');
+        }else {
+            setLanguage(lang);
+        }
+    }
+});
+
 function calculatePrice() {
     var verandaWidthElem = document.getElementById('veranda-width');
     var verandaDepthElem = document.getElementById('veranda-depth');
@@ -388,13 +399,6 @@ function updateOutput(type = false, frontGlassItem) {
             option.text = text;
             selectElement.add(option);
         }
-
-        // document.getElementById('ev-info').textContent = buildingType == 'tek1' ? 'Tek 1' : evTipi == 'çoklu2' ? 'Çoklu 2' : 'Köşe 3';
-        // document.getElementById('genislik-info').textContent = genislik;
-        // document.getElementById('veranda-info').textContent = verandaRenk == 'antrasit1' ? 'Antrasit 1' : 'Beyaz 2';
-        // document.getElementById('ustcam-info').textContent = ustCamTipi == 'cam1' ? 'Cam 1' : ustCamTipi == 'polikarbon-renkli2' ? 'Polikarbon Renkli 2' : 'Polikarbon Şeffaf 3';
-        // document.getElementById('oncampanel-info').textContent = onCamPanel == 1 ? 'Var' : 'Yok';
-        // document.getElementById('yancamlar-info').textContent = yanCam == 1 ? 'Var' : 'Yok';
 
     }
 
