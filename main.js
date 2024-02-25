@@ -158,6 +158,8 @@ function changeAluminum(clickedNo = false) {
     } else {
         noAluminumElem.checked = false;
     }
+
+    updateOutput(true);
 }
 
 function changeGlass(clickedNo = false) {
@@ -172,7 +174,7 @@ function changeGlass(clickedNo = false) {
         noGlassElem.checked = false;
     }
 
-    updateOutput(false);
+    updateOutput(true);
 }
 
 function getGlassPane(verandaElem1, verandaElem2) {
@@ -361,6 +363,20 @@ function updateOutput(type = false, frontGlassItem) {
         else {
             var image_close = "image_yakin_" + verandaColor + "_" +
                 roofGlassType;
+
+                var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+                var rightAluminumElem = document.getElementById('sideWindowAluRight');
+            
+                var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+                var rightGlassElem = document.getElementById('sideWindowGlassRight');
+
+            if(leftAluminumElem.checked || rightAluminumElem.checked) {
+                image_close = 'aluminum_' + verandaColor;
+            }
+
+            if(leftGlassElem.checked || rightGlassElem.checked) {
+                image_close = 'glass_' + verandaColor;
+            }
 
             document.getElementById('image').src = "assets/close/" + image_close + ".jpg"; // İmage path'i buraya uygun olarak güncellenmeli
             document.getElementById('veranda-width-text').textContent = verandaWidthElem.value;
