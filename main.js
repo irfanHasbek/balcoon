@@ -274,10 +274,7 @@ function calculatePrice() {
         resultPrice += optionsPrice;
     }
 
-     // var information = document.getElementById('information');
      var form = document.getElementById('form');
-
-     // information.style.display = 'block';
      form.style.display = 'block';
  
      form.scrollIntoView({ behavior: "smooth", block: "start" }); updateOutput
@@ -383,10 +380,8 @@ function updateOutput(type = false, frontGlassItem) {
         }
 
         var currentVerandaDepthValue = verandaDepthElem.value;
-        // Option değerlerini temizle
         verandaDepthElem.innerHTML = verandaDepthElem.value;
 
-        // Yeni option değerlerini ekle
         if (roofGlassType === 1) {
             addOption(verandaDepthElem, "3", "3");
             addOption(verandaDepthElem, "4", "4");
@@ -415,20 +410,15 @@ function updateOutput(type = false, frontGlassItem) {
             option.text = text;
             selectElement.add(option);
         }
-
     }
-
 }
 
 function formSubmit() {
-    /// Formun submit olayını dinle
     document.querySelector('form').addEventListener('submit', function (event) {
-        event.preventDefault(); // Formun varsayılan gönderme işlemini engelle
+        event.preventDefault(); 
 
-        // Resmi yükleme ve işlemleri burada gerçekleştir
         loadImageAndSend();
     });
-
 }
 
 function loadImageAndSend() {
@@ -442,6 +432,7 @@ function loadImageAndSend() {
     var rightAluminumElem = document.getElementById('sideWindowAluRight');
     var leftGlassElem = document.getElementById('sideWindowGlassLeft');
     var rightGlassElem = document.getElementById('sideWindowGlassRight');
+    var submitBtnElem = document.getElementById('submitBtn');
 
     var buildingType = buildingTypeElem.value == '"base-1' ? languages[currentLanguage]['base'] : buildingTypeElem.value == 'ordered-2' ? languages[currentLanguage]['ordered'] : languages[currentLanguage]['bend'];
     var verandaWidth = parseInt(verandaWidthElem.value) + ' ' +  languages[currentLanguage]['unit.meter'];
@@ -449,17 +440,17 @@ function loadImageAndSend() {
     var verandaColor = verandaColorElem.value == 'antrasit' ? languages[currentLanguage]['colors.antrasit'] : languages[currentLanguage]['colors.white']; 
     var roofGlassType = roofGlassTypeElem.value == 1 ? languages[currentLanguage]['item.glass'] : roofGlassTypeElem.value == 2 ? languages[currentLanguage]['item.colorful-polycarbon'] : languages[currentLanguage]['item.transparent-polycarbon']
     var roofGlassExist = frontGlassExistElem.checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no'];
-    var sidePane = languages[currentLanguage]['sideWindowOptions'] + ': ';
+    var sidePane = '';//languages[currentLanguage]['sideWindowOptions'] + ': ';
 
     if(leftAluminumElem.checked) sidePane += languages[currentLanguage]['direction.left'] + ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
     if(rightAluminumElem.checked) sidePane += languages[currentLanguage]['direction.right'] +  ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
     if(leftGlassElem.checked) sidePane += languages[currentLanguage]['direction.left'] +  ' ' + languages[currentLanguage]['glassWindow'] + ' ';
     if(rightGlassElem.checked) sidePane += languages[currentLanguage]['direction.right'] +  ' ' + languages[currentLanguage]['glassWindow'] + ' ';
 
-    // Resmi bir <img> etiketi üzerinden yükle
+    
     var img = new Image();
-    img.crossOrigin = 'Anonymous'; // İzin gerektiren bir durumdaysa bu satırı ekleyin
-    const resimAdi = new URL(document.getElementById('image').src).pathname; // resim adını al
+    img.crossOrigin = 'Anonymous'; 
+    const resimAdi = new URL(document.getElementById('image').src).pathname; 
     img.src = resimAdi;
 
     img.onload = function () {
@@ -470,9 +461,7 @@ function loadImageAndSend() {
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, img.width, img.height);
 
-        // Canvas'teki resmi binary veriye dönüştür
         canvas.toBlob(function (blob) {
-            // Resmi bir FormData nesnesine ekle
             var formData = new FormData();
             formData.append('gorsel', blob, 'image.jpg');
             formData.append('adSoyad', document.getElementById('fullname').value);
@@ -486,9 +475,10 @@ function loadImageAndSend() {
             formData.append('ustCamTipi', roofGlassType);
             formData.append('onCamPanel', roofGlassExist);
             formData.append('yanCamlar', sidePane);
+            formData.append('fiyat', document.getElementById('price-result').textContent);
             
 
-            // Örnek bir HTTP isteği oluştur
+            submitBtnElem.disabled = true;
             fetch('https://mailgonder.localveri.net/send', {
                 method: 'POST',
                 body: formData
@@ -500,13 +490,20 @@ function loadImageAndSend() {
                     throw new Error('Network response was not ok.');
                 })
                 .then(data => {
-                    // İşlemleri burada devam ettirin
-                    console.log('Response:', data);
+                    if(data.status == 'success') {
+
+                        alert(languages[currentLanguage]['SuccessMessage']);
+                    }else {
+                        alert(languages[currentLanguage]['ErrorMessage']);
+                    }
+                    submitBtnElem.disabled = false;
+                    submitBtnElem.style.display = 'none';
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    // Hata durumunda kullanıcıya bir hata mesajı göster
-                    alert(languages[currentLanguage]['SuccessMessage']);
+                    submitBtnElem.disabled = false;
+
+                    alert(languages[currentLanguage]['ErrorMessage']);
                 });
         }, 'image/jpeg');
     };

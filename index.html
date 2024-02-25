@@ -4,15 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="lang.js" type="module"></script>
-    <script src="main.js" type="module"></script>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <title>Varyasyon Seçici</title>
-
+    <title>MCA Group Calculater</title>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -317,7 +313,7 @@
                 <div class="container p-2 price-box" style="display: none;">
                     <span id="price-result"></span>
                 </div>
-                
+
             </div>
             <div class="row p-2 m-0">
                 <div class="col-lg-8 col-sm-12 p-0 m-0">
@@ -331,11 +327,11 @@
                                 </div>
                                 <div class="mb-lg-6 col-md-6">
                                     <label for="exampleInputPassword1" class="form-label"></label>
-                                    <input type="number" class="form-control formBorder" data-translate="telephone" required
-                                        placeholder="" id="telephone">
+                                    <input type="number" class="form-control formBorder" data-translate="telephone"
+                                        required placeholder="" id="telephone">
                                 </div>
                             </div>
-    
+
                             <div class="row justify-content-center">
                                 <div class="mb-lg-6 col-md-6">
                                     <label for="exampleInputEmail1" class="form-label"></label>
@@ -348,74 +344,20 @@
                                         placeholder="" id="address">
                                 </div>
                             </div>
-    
+
                             <div style="margin-top: -20px;">
-                                <button class="btn py-2 px-5 mt-4 mb-4 col-6"
+                                <button class="btn py-2 px-5 mt-4 mb-4 col-6" id="submitBtn"
                                     style="background-color: #36c;color: white !important" onclick="formSubmit()"
                                     data-translate="submit"></button>
                             </div>
-    
+
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- FORM -->
         </div>
 
     </div>
-
-
-    <!-- INFORMATION -->
-
-    <!-- <div class="container pb-5" id="information" style="display: none;">
-        <div class="row">
-            <div class="col-md-4 col-6 infoBorderLeft">
-                <div>
-                    <h5 data-translate="evTipi">Ev Tipi:</h5>
-                    <p id="ev-info">Tek 1</p>
-                </div>
-
-                <div>
-                    <h5 data-translate="verandaRengi"> Veranda Rengi:</h5>
-                    <p id="veranda-info">Antrasit 1</p>
-                </div>
-
-                <div>
-                    <h5 data-translate="onCamPanel">Ön Cam Panel:</h5>
-                    <p id="oncampanel-info">Yok</p>
-                </div>
-
-                <div>
-                    <h5 data-translate="derinlikOlcusu">Derinlik:</h5>
-                    <p id="derinlik-info">3</p>
-                </div>
-
-            </div>
-
-            <div class="col-md-4 col-6 infoBorderLeft">
-                <div>
-                    <h5 data-translate="genislikOlcusu">Genişlik Ölçüsü:</h5>
-                    <p id="genislik-info">5 Metre</p>
-                </div>
-
-                <div>
-                    <h5 data-translate="ustCamTipi">Üst Cam Tipi:</h5>
-                    <p id="ustcam-info">Cam 1</p>
-                </div>
-
-                <div>
-                    <h5 data-translate="yanCamlar">Yan Camlar:</h5>
-                    <p id="yancamlar-info">Yok</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div> -->
-
-
-
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -432,15 +374,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
-
     <script src="lang.js"></script>
     <script src="prices.js"></script>
     <script src="main.js"></script>
-    <script>
-        // Kullanıcı dilini belirleyerek içeriği doldur
-        setLanguage('tr'); // Veya setLanguage('en');
-    </script>
 
 </body>
 
