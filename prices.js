@@ -1,4 +1,7 @@
 const prices = {
+    spices: 325,
+    aluminum: 120,
+    glass: 450,
     standart: {
         glass: {
             dimension_3_side_1: {

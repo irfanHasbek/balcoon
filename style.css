@@ -4,8 +4,8 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    padding-left: 250px;
-    padding-right: 250px;
+    /* padding-left: 250px;
+    padding-right: 250px; */
     overflow-x: hidden;
 }
 
@@ -36,6 +36,10 @@ body {
 #options-container label {
     display: block;
     margin-top: 10px;
+}
+
+#options-container {
+    /* text-align: center; */
 }
 
 .price-box {

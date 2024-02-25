@@ -193,25 +193,72 @@ function calculatePrice() {
     var verandaType = $("input[name='veranda-type']:checked").val();
     var roofGlassType = getRoofGlassType(roofGlassTypeElem);
 
+    var noSpiceElem = document.getElementById('sideWindowNo');
+    var leftSpiceElem = document.getElementById('sideWindowLeft');
+    var rightSpiceElem = document.getElementById('sideWindowRight');
+
+    var noAluminumElem = document.getElementById('sideWindowAluNo');
+    var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+    var rightAluminumElem = document.getElementById('sideWindowAluRight');
+
+    var noGlassElem = document.getElementById('sideWindowGlassNo');
+    var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+    var rightGlassElem = document.getElementById('sideWindowGlassRight');
+
+    var frontGlassExistElem = document.getElementById('front-glass-type-exist');
+
     var resultPrice = 0;
 
     var dimensions = verandaWidth + 'x' + verandaDepth;
+
+    var dimensionsSide = 'dimension_' + verandaDepth + '_side_2';
     if(verandaType == 'standart' || verandaType == 'disassembled') {
         if(roofGlassType == 1) {
-            resultPrice = prices['standart']['glass']['dimension_3_side_2'][dimensions];
+            resultPrice = prices['standart']['glass'][dimensionsSide][dimensions];
         }else if(roofGlassType == 2) {
-            resultPrice = prices['standart']['polycarbon']['dimension_3_side_2'][dimensions];
+            resultPrice = prices['standart']['polycarbon'][dimensionsSide][dimensions];
         }else {
-            resultPrice = prices['standart']['transparent']['dimension_3_side_2'][dimensions];
+            resultPrice = prices['standart']['transparent'][dimensionsSide][dimensions];
         }
     }else {
         if(roofGlassType == 1) {
-            resultPrice = prices['pergamon']['glass']['dimension_3_side_2'][dimensions];
+            resultPrice = prices['pergamon']['glass'][dimensionsSide][dimensions];
         }else if(roofGlassType == 2) {
-            resultPrice = prices['pergamon']['polycarbon']['dimension_3_side_2'][dimensions];
+            resultPrice = prices['pergamon']['polycarbon'][dimensionsSide][dimensions];
         }else {
-            resultPrice = prices['pergamon']['transparent']['dimension_3_side_2'][dimensions];
+            resultPrice = prices['pergamon']['transparent'][dimensionsSide][dimensions];
         }
+    }
+
+    var optionsPrice = 0;
+
+    if(!noSpiceElem.checked) {
+        if(leftSpiceElem.checked) optionsPrice += prices.spices
+        if(rightSpiceElem.checked) optionsPrice += prices.spices
+
+        if(!noAluminumElem.checked) {
+            var paneArea = verandaDepth * 2.5;
+            if(leftAluminumElem.checked) optionsPrice += paneArea * prices.aluminum;
+            if(rightAluminumElem.checked) optionsPrice += paneArea * prices.aluminum;
+        }
+
+        if(!noGlassElem.checked) {
+            var paneArea = verandaDepth * 1;
+            if(leftGlassElem.checked) optionsPrice += paneArea * prices.glass;
+            if(rightGlassElem.checked) optionsPrice += paneArea * prices.glass;
+        }
+
+    }
+
+    if(frontGlassExistElem.checked) {
+        var pane = verandaWidth * 1;
+        optionsPrice += pane * prices.glass;
+    }
+
+    if(resultPrice == undefined || optionsPrice == undefined) {
+        resultPrice = 0;
+    }else {
+        resultPrice += optionsPrice;
     }
 
      // var information = document.getElementById('information');
@@ -369,10 +416,34 @@ function formSubmit() {
 }
 
 function loadImageAndSend() {
+    var buildingTypeElem = document.getElementById('building-type');
+    var verandaWidthElem = document.getElementById('veranda-width');
+    var verandaDepthElem = document.getElementById('veranda-depth');
+    var verandaColorElem = document.getElementById('veranda-color');
+    var roofGlassTypeElem = document.getElementById('roof-item-type');
+    var frontGlassExistElem = document.getElementById('front-glass-type-exist');
+    var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+    var rightAluminumElem = document.getElementById('sideWindowAluRight');
+    var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+    var rightGlassElem = document.getElementById('sideWindowGlassRight');
+
+    var buildingType = buildingTypeElem.value == '"base-1' ? languages[currentLanguage]['base'] : buildingTypeElem.value == 'ordered-2' ? languages[currentLanguage]['ordered'] : languages[currentLanguage]['bend'];
+    var verandaWidth = parseInt(verandaWidthElem.value) + ' ' +  languages[currentLanguage]['unit.meter'];
+    var verandaDepth = parseInt(verandaDepthElem.value) + ' ' +  languages[currentLanguage]['unit.meter'];
+    var verandaColor = verandaColorElem.value == 'antrasit' ? languages[currentLanguage]['colors.antrasit'] : languages[currentLanguage]['colors.white']; 
+    var roofGlassType = roofGlassTypeElem.value == 1 ? languages[currentLanguage]['item.glass'] : roofGlassTypeElem.value == 2 ? languages[currentLanguage]['item.colorful-polycarbon'] : languages[currentLanguage]['item.transparent-polycarbon']
+    var roofGlassExist = frontGlassExistElem.checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no'];
+    var sidePane = languages[currentLanguage]['sideWindowOptions'] + ': ';
+
+    if(leftAluminumElem.checked) sidePane += languages[currentLanguage]['direction.left'] + languages[currentLanguage]['aluminumWindow'] + ' ';
+    if(rightAluminumElem.checked) sidePane += languages[currentLanguage]['direction.right'] + languages[currentLanguage]['aluminumWindow'] + ' ';
+    if(leftGlassElem.checked) sidePane += languages[currentLanguage]['direction.left'] + languages[currentLanguage]['glassWindow'] + ' ';
+    if(rightGlassElem.checked) sidePane += languages[currentLanguage]['direction.right'] + languages[currentLanguage]['glassWindow'] + ' ';
+
     // Resmi bir <img> etiketi üzerinden yükle
     var img = new Image();
     img.crossOrigin = 'Anonymous'; // İzin gerektiren bir durumdaysa bu satırı ekleyin
-    const resimAdi = document.getElementById('resim').src.split('/').pop(); // resim adını al
+    const resimAdi = new URL(document.getElementById('image').src).pathname; // resim adını al
     img.src = resimAdi;
 
     img.onload = function () {
@@ -387,19 +458,22 @@ function loadImageAndSend() {
         canvas.toBlob(function (blob) {
             // Resmi bir FormData nesnesine ekle
             var formData = new FormData();
-            formData.append('image', blob, 'image.jpg'); // blob, dosya adı
-
-            // Diğer bilgileri FormData'ya ekle
-            formData.append('ev-info', document.getElementById('ev-info').textContent);
-            formData.append('veranda-info', document.getElementById('veranda-info').textContent);
-            formData.append('oncampanel-info', document.getElementById('oncampanel-info').textContent);
-            formData.append('derinlik-info', document.getElementById('derinlik-info').textContent);
-            formData.append('genislik-info', document.getElementById('genislik-info').textContent);
-            formData.append('ustcam-info', document.getElementById('ustcam-info').textContent);
-            formData.append('yancamlar-info', document.getElementById('yancamlar-info').textContent);
+            formData.append('gorsel', blob, 'image.jpg');
+            formData.append('adSoyad', document.getElementById('fullname').value);
+            formData.append('telefon', document.getElementById('telephone').value);
+            formData.append('ePosta', document.getElementById('email').value);
+            formData.append('ikametAdresi', document.getElementById('address').value);
+            formData.append('evTipi', buildingType);
+            formData.append('genislik', verandaWidth);
+            formData.append('derinlik', verandaDepth);
+            formData.append('verandaRengi', verandaColor);
+            formData.append('ustCamTipi', roofGlassType);
+            formData.append('onCamPanel', roofGlassExist);
+            formData.append('yanCamlar', sidePane);
+            
 
             // Örnek bir HTTP isteği oluştur
-            fetch('your-service-url', {
+            fetch('https://mailgonder.localveri.net/send', {
                 method: 'POST',
                 body: formData
             })
@@ -416,7 +490,7 @@ function loadImageAndSend() {
                 .catch(error => {
                     console.error('Error:', error);
                     // Hata durumunda kullanıcıya bir hata mesajı göster
-                    alert('Resim gönderilirken bir hata oluştu!');
+                    alert(languages[currentLanguage]['SuccessMessage']);
                 });
         }, 'image/jpeg');
     };

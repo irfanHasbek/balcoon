@@ -14,10 +14,10 @@ const languages = {
       'spice': 'Spice',
       'aluminumWindow': 'Aluminyum Panel',
       'glassWindow': 'Cam Panel',
-      'fullname': 'Adınız ve Soyadınız',
-      'telephone': 'Telefon Numaranız',
-      'email': 'E-posta Adresiniz',
-      'address': 'İkamet Ettiğiniz Yer',
+      'fullname': 'Adınız ve Soyadınız *',
+      'telephone': 'Telefon Numaranız *',
+      'email': 'E-posta Adresiniz *',
+      'address': 'İkamet Ettiğiniz Yer *',
       'submit': 'Gönder',
       'languageOptions': 'Dil Seçenekleri',
       'base': 'Müstakil',
@@ -40,10 +40,14 @@ const languages = {
       'telefon': 'Telefon numaran*',
       'eposta': 'E-posta adresiniz*',
       'ikametyeri': 'İkamet ettiğiniz yer*',
-      'metre': 'metre',
+      'unit.meter': 'metre',
+      'direction.left': 'Sol',
+      'direction.right': 'Sağ',
       'colors.antrasit': 'Antrasit', 
       'colors.white': 'Beyaz',
-      'resultMessage': 'vergi ve kurulum dahil' 
+      'resultMessage': 'vergi ve kurulum dahil',
+      'SuccessMessage' : 'Teklif talebiniz alınmıştır.',
+      'ErrorMessage' : 'Bir hata oluştu',
   }
 };
 

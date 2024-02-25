@@ -21,7 +21,7 @@
 
     <div class="container mt-2">
         <div class="row" style="justify-content: space-between;">
-            <div class="col-md-8 p-0 m-0">
+            <div class="col-md-8 p-2 m-0">
                 <div class="row">
                     <div style="position: relative;width: 100%;">
                         <div class="switch-container">
@@ -37,47 +37,6 @@
                             class="img-fluid">
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="container my-5 " id="form" style="display: none;">
-                        <form>
-                            <div class="row justify-content-center">
-                                <div class="mb-lg-3 col-md-6">
-                                    <label for="exampleInputEmail1" class="form-label"></label>
-                                    <input type="text" class="form-control formBorder" data-translate="fullname"
-                                        placeholder="" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                </div>
-                                <div class="mb-lg-3 col-md-6">
-                                    <label for="exampleInputPassword1" class="form-label"></label>
-                                    <input type="number" class="form-control formBorder" data-translate="telephone"
-                                        placeholder="" id="exampleInputPassword1">
-                                </div>
-                            </div>
-
-                            <div class="row justify-content-center" style="margin-top: -30px;">
-                                <div class="mb-lg-3 col-md-6">
-                                    <label for="exampleInputEmail1" class="form-label"></label>
-                                    <input type="email" class="form-control formBorder" data-translate="email"
-                                        placeholder="" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                </div>
-                                <div class="mb-lg-3 col-md-6">
-                                    <label for="" class="form-label"></label>
-                                    <input type="text" class="form-control formBorder" data-translate="address"
-                                        placeholder="" id="">
-                                </div>
-                            </div>
-
-                            <div class="row pl-3" style="margin-top: -20px;width: 98%;">
-                                <button type="submit" class="btn py-2 px-5 mt-4 mb-4 col-6"
-                                    style="background-color: #36c;color: white !important" onclick="formSubmit()"
-                                    data-translate="submit"></button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-                <!-- FORM -->
-
             </div>
             <div class="col-md-4 p-10 m-0" id="options-container">
 
@@ -355,10 +314,52 @@
                         style="color: white !important;" data-translate="calculatePrice"></button>
                 </div>
 
-                <div class="row m-2 price-box" style="display: none;">
+                <div class="container p-2 price-box" style="display: none;">
                     <span id="price-result"></span>
                 </div>
+                
             </div>
+            <div class="row p-2 m-0">
+                <div class="col-lg-8 col-sm-12 p-0 m-0">
+                    <div id="form" style="display: none;">
+                        <form>
+                            <div class="row justify-content-center">
+                                <div class="mb-lg-6 col-md-6">
+                                    <label for="exampleInputEmail1" class="form-label"></label>
+                                    <input type="text" class="form-control formBorder" data-translate="fullname"
+                                        placeholder="" id="fullname" aria-describedby="emailHelp" required value="irfan hasbek">
+                                </div>
+                                <div class="mb-lg-6 col-md-6">
+                                    <label for="exampleInputPassword1" class="form-label"></label>
+                                    <input type="number" class="form-control formBorder" data-translate="telephone" required value="5069323139"
+                                        placeholder="" id="telephone">
+                                </div>
+                            </div>
+    
+                            <div class="row justify-content-center" style="margin-top: -30px;">
+                                <div class="mb-lg-6 col-md-6">
+                                    <label for="exampleInputEmail1" class="form-label"></label>
+                                    <input type="email" class="form-control formBorder" data-translate="email" required value="irfanhasbek@gmail.com"
+                                        placeholder="" id="email" aria-describedby="emailHelp">
+                                </div>
+                                <div class="mb-lg-6 col-md-6">
+                                    <label for="" class="form-label"></label>
+                                    <input type="text" class="form-control formBorder" data-translate="address" required value="1420 sokak"
+                                        placeholder="" id="address">
+                                </div>
+                            </div>
+    
+                            <div style="margin-top: -20px;">
+                                <button type="submit" class="btn py-2 px-5 mt-4 mb-4 col-6"
+                                    style="background-color: #36c;color: white !important" onclick="formSubmit()"
+                                    data-translate="submit"></button>
+                            </div>
+    
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- FORM -->
         </div>
 
     </div>
