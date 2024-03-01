@@ -372,7 +372,12 @@ function updateOutput(type = false, frontGlassItem) {
             }
 
             if(leftGlassElem.checked || rightGlassElem.checked) {
-                image_close = 'glass_' + verandaColor;
+                if(leftGlassElem.checked) {
+                    image_close = 'glass_' + verandaColor + '_2';
+                }
+                if(rightGlassElem.checked) {
+                    image_close = 'glass_' + verandaColor + '_1';
+                }
             }
 
             document.getElementById('image').src = "assets/close/" + image_close + ".jpg"; // İmage path'i buraya uygun olarak güncellenmeli
