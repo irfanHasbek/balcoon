@@ -186,11 +186,11 @@ function getGlassPane(verandaElem1, verandaElem2) {
 }
 
 $(document).ready(() => {
-    if(window.location.search != '') {
+    if (window.location.search != '') {
         var lang = window.location.search.split('=').pop();
-        if(lang == undefined) {
+        if (lang == undefined) {
             setLanguage('tr');
-        }else {
+        } else {
             setLanguage(lang);
         }
     }
@@ -225,68 +225,71 @@ function calculatePrice() {
     var dimensions = verandaWidth + 'x' + verandaDepth;
 
     var dimensionsSide = 'dimension_' + verandaDepth + '_side_2';
-    if(verandaType == 'standart' || verandaType == 'disassembled') {
-        if(roofGlassType == 1) {
+    if (verandaType == 'standart' || verandaType == 'disassembled') {
+        if (roofGlassType == 1) {
             resultPrice = prices['standart']['glass'][dimensionsSide][dimensions];
-        }else if(roofGlassType == 2) {
+        } else if (roofGlassType == 2) {
             resultPrice = prices['standart']['polycarbon'][dimensionsSide][dimensions];
-        }else {
+        } else {
             resultPrice = prices['standart']['transparent'][dimensionsSide][dimensions];
         }
-    }else {
-        if(roofGlassType == 1) {
+    } else {
+        if (roofGlassType == 1) {
             resultPrice = prices['pergamon']['glass'][dimensionsSide][dimensions];
-        }else if(roofGlassType == 2) {
+        } else if (roofGlassType == 2) {
             resultPrice = prices['pergamon']['polycarbon'][dimensionsSide][dimensions];
-        }else {
+        } else {
             resultPrice = prices['pergamon']['transparent'][dimensionsSide][dimensions];
         }
     }
 
     var optionsPrice = 0;
 
-    if(!noSpiceElem.checked) {
-        if(leftSpiceElem.checked) optionsPrice += prices.spices
-        if(rightSpiceElem.checked) optionsPrice += prices.spices
+    if (!noSpiceElem.checked) {
+        if (leftSpiceElem.checked) optionsPrice += prices.spices
+        if (rightSpiceElem.checked) optionsPrice += prices.spices
 
-        if(!noAluminumElem.checked) {
+        if (!noAluminumElem.checked) {
             var paneArea = verandaDepth * 2.5;
-            if(leftAluminumElem.checked) optionsPrice += paneArea * prices.aluminum;
-            if(rightAluminumElem.checked) optionsPrice += paneArea * prices.aluminum;
+            if (leftAluminumElem.checked) optionsPrice += paneArea * prices.aluminum;
+            if (rightAluminumElem.checked) optionsPrice += paneArea * prices.aluminum;
         }
 
-        if(!noGlassElem.checked) {
+        if (!noGlassElem.checked) {
             var paneArea = verandaDepth * 1;
-            if(leftGlassElem.checked) optionsPrice += paneArea * prices.glass;
-            if(rightGlassElem.checked) optionsPrice += paneArea * prices.glass;
+            if (leftGlassElem.checked) optionsPrice += paneArea * prices.glass;
+            if (rightGlassElem.checked) optionsPrice += paneArea * prices.glass;
         }
 
     }
 
-    if(frontGlassExistElem.checked) {
+    if (frontGlassExistElem.checked) {
         var pane = verandaWidth * 1;
         optionsPrice += pane * prices.glass;
     }
 
-    if(resultPrice == undefined || optionsPrice == undefined) {
+    if (resultPrice == undefined || optionsPrice == undefined) {
         resultPrice = 0;
-    }else {
+    } else {
         resultPrice += optionsPrice;
     }
 
-     var form = document.getElementById('form');
-     form.style.display = 'block';
- 
-     form.scrollIntoView({ behavior: "smooth", block: "start" }); updateOutput
-     
-     var priceBoxElem = document.getElementsByClassName('price-box');
-     var resultSpanElem = document.getElementById('price-result');
-     var calculateButtonElem = document.getElementById('calculateButton');
+    var form = document.getElementById('form');
+    var information = document.getElementById('information');
 
-     resultSpanElem.textContent = '€ ' + parseFloat(resultPrice).toFixed(2) + ' - ' + languages[currentLanguage]['resultMessage'];
+    form.style.display = 'block';
+    information.style.display = 'block';
 
-     calculateButtonElem.style.display = 'none';
-     priceBoxElem[0].style.display = 'inline-flex';
+    form.scrollIntoView({ behavior: "smooth", block: "start" }); updateOutput
+
+    var priceBoxElem = document.getElementsByClassName('price-box');
+    var resultSpanElem = document.getElementById('price-result');
+    var calculateButtonElem = document.getElementById('calculateButton');
+
+    resultSpanElem.textContent = '€ ' + parseFloat(resultPrice).toFixed(2) + ' - ' + languages[currentLanguage]['resultMessage'];
+
+    calculateButtonElem.style.display = 'none';
+    priceBoxElem[0].style.display = 'inline-flex';
 }
 
 function updateOutput(type = false, frontGlassItem) {
@@ -361,21 +364,21 @@ function updateOutput(type = false, frontGlassItem) {
             var image_close = "image_yakin_" + verandaColor + "_" +
                 roofGlassType;
 
-                var leftAluminumElem = document.getElementById('sideWindowAluLeft');
-                var rightAluminumElem = document.getElementById('sideWindowAluRight');
-            
-                var leftGlassElem = document.getElementById('sideWindowGlassLeft');
-                var rightGlassElem = document.getElementById('sideWindowGlassRight');
+            var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+            var rightAluminumElem = document.getElementById('sideWindowAluRight');
 
-            if(leftAluminumElem.checked || rightAluminumElem.checked) {
+            var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+            var rightGlassElem = document.getElementById('sideWindowGlassRight');
+
+            if (leftAluminumElem.checked || rightAluminumElem.checked) {
                 image_close = 'aluminum_' + verandaColor;
             }
 
-            if(leftGlassElem.checked || rightGlassElem.checked) {
-                if(leftGlassElem.checked) {
+            if (leftGlassElem.checked || rightGlassElem.checked) {
+                if (leftGlassElem.checked) {
                     image_close = 'glass_' + verandaColor + '_2';
                 }
-                if(rightGlassElem.checked) {
+                if (rightGlassElem.checked) {
                     image_close = 'glass_' + verandaColor + '_1';
                 }
             }
@@ -420,7 +423,7 @@ function updateOutput(type = false, frontGlassItem) {
 
 function formSubmit() {
     document.querySelector('form').addEventListener('submit', function (event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         loadImageAndSend();
     });
@@ -440,22 +443,22 @@ function loadImageAndSend() {
     var submitBtnElem = document.getElementById('submitBtn');
 
     var buildingType = buildingTypeElem.value == '"base-1' ? languages[currentLanguage]['base'] : buildingTypeElem.value == 'ordered-2' ? languages[currentLanguage]['ordered'] : languages[currentLanguage]['bend'];
-    var verandaWidth = parseInt(verandaWidthElem.value) + ' ' +  languages[currentLanguage]['unit.meter'];
-    var verandaDepth = parseInt(verandaDepthElem.value) + ' ' +  languages[currentLanguage]['unit.meter'];
-    var verandaColor = verandaColorElem.value == 'antrasit' ? languages[currentLanguage]['colors.antrasit'] : languages[currentLanguage]['colors.white']; 
+    var verandaWidth = parseInt(verandaWidthElem.value) + ' ' + languages[currentLanguage]['unit.meter'];
+    var verandaDepth = parseInt(verandaDepthElem.value) + ' ' + languages[currentLanguage]['unit.meter'];
+    var verandaColor = verandaColorElem.value == 'antrasit' ? languages[currentLanguage]['colors.antrasit'] : languages[currentLanguage]['colors.white'];
     var roofGlassType = roofGlassTypeElem.value == 1 ? languages[currentLanguage]['item.glass'] : roofGlassTypeElem.value == 2 ? languages[currentLanguage]['item.colorful-polycarbon'] : languages[currentLanguage]['item.transparent-polycarbon']
     var roofGlassExist = frontGlassExistElem.checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no'];
     var sidePane = '';//languages[currentLanguage]['sideWindowOptions'] + ': ';
 
-    if(leftAluminumElem.checked) sidePane += languages[currentLanguage]['direction.left'] + ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
-    if(rightAluminumElem.checked) sidePane += languages[currentLanguage]['direction.right'] +  ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
-    if(leftGlassElem.checked) sidePane += languages[currentLanguage]['direction.left'] +  ' ' + languages[currentLanguage]['glassWindow'] + ' ';
-    if(rightGlassElem.checked) sidePane += languages[currentLanguage]['direction.right'] +  ' ' + languages[currentLanguage]['glassWindow'] + ' ';
+    if (leftAluminumElem.checked) sidePane += languages[currentLanguage]['direction.left'] + ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
+    if (rightAluminumElem.checked) sidePane += languages[currentLanguage]['direction.right'] + ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
+    if (leftGlassElem.checked) sidePane += languages[currentLanguage]['direction.left'] + ' ' + languages[currentLanguage]['glassWindow'] + ' ';
+    if (rightGlassElem.checked) sidePane += languages[currentLanguage]['direction.right'] + ' ' + languages[currentLanguage]['glassWindow'] + ' ';
 
-    
+
     var img = new Image();
-    img.crossOrigin = 'Anonymous'; 
-    const resimAdi = new URL(document.getElementById('image').src).pathname; 
+    img.crossOrigin = 'Anonymous';
+    const resimAdi = new URL(document.getElementById('image').src).pathname;
     img.src = resimAdi;
 
     img.onload = function () {
@@ -481,7 +484,7 @@ function loadImageAndSend() {
             formData.append('onCamPanel', roofGlassExist);
             formData.append('yanCamlar', sidePane);
             formData.append('fiyat', document.getElementById('price-result').textContent);
-            
+
 
             submitBtnElem.disabled = true;
             fetch('https://mailgonder.localveri.net/send', {
@@ -495,10 +498,10 @@ function loadImageAndSend() {
                     throw new Error('Network response was not ok.');
                 })
                 .then(data => {
-                    if(data.status == 'success') {
+                    if (data.status == 'success') {
 
                         alert(languages[currentLanguage]['SuccessMessage']);
-                    }else {
+                    } else {
                         alert(languages[currentLanguage]['ErrorMessage']);
                     }
                     submitBtnElem.disabled = false;

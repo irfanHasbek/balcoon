@@ -101,6 +101,28 @@ body {
     color: #ba5553;
 }
 
+.information {
+    position: absolute;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    font-size: large;
+    font-weight: bold;
+    font-style: oblique;
+    /* height: 50px; */
+}
+
+.information::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: red;
+    display: block;
+    border-radius: 5px;
+}
+
 form input {
     height: 46px !important;
     border-radius: 5px !important;
@@ -166,11 +188,11 @@ form input {
     display: inline;
 }
 
-.s-input:checked + .s-label .fa-sun {
+.s-input:checked+.s-label .fa-sun {
     transform: translateX(43px);
 }
 
-.s-input:checked +.s-label .fa-moon {
+.s-input:checked+.s-label .fa-moon {
     transform: translateX(-43px);
 }
 
@@ -178,7 +200,7 @@ form input {
     opacity: 1;
 }
 
-.s-input:checked + .s-label .fa-sun {
+.s-input:checked+.s-label .fa-sun {
     opacity: 0;
 }
 
@@ -186,7 +208,7 @@ form input {
     opacity: 0;
 }
 
-.s-input:checked + .s-label .fa-moon {
+.s-input:checked+.s-label .fa-moon {
     opacity: 1;
 }
 
