@@ -81,7 +81,17 @@ const languages = {
     'resultMessage': 'including assembly and vat',
     'SuccessMessage': 'Your demand is created succesfully.',
     'ErrorMessage': 'Something went wrong',
-    'form-information': 'Please request your obligation-free quote here'
+    'form-information': 'Please request your obligation-free quote here',
+    'info-type': 'Type',
+    'info-color': 'Color',
+    'info-dimensions': 'Dimensions',
+    'info-coverage': 'Coverage',
+    'info-led': 'LED Lightning',
+    'info-skewer': 'Skewer',
+    'info-aluminum': 'Aluminum fence',
+    'info-GlassWall': 'Glass Wall',
+    'result-information': 'The indicative price for your MFC Veranda',
+    'result-information-2': 'The above indicative price includes installation and required materials.Transport costs are calculated based on the travel distance.This indicative price does not take into account current promotions and/or discounts.No rights can be derived from the above indicative price.'
   },
   'de': {
     "building-type": "Haustyp",
@@ -127,7 +137,7 @@ const languages = {
   }
 };
 
-let currentLanguage = 'tr';
+let currentLanguage = 'en';
 
 function setLanguage(lang) {
   currentLanguage = lang;

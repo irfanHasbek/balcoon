@@ -145,6 +145,8 @@ function changeSpice(clickedNo = false) {
             noGlassElem.disabled = true;
         }
     }
+
+    updateOutput(true)
 }
 
 function changeAluminum(clickedNo = false) {
@@ -276,9 +278,11 @@ function calculatePrice() {
 
     var form = document.getElementById('form');
     var information = document.getElementById('information');
+    var resultInformation = document.getElementById('info-result');
 
     form.style.display = 'block';
     information.style.display = 'block';
+    resultInformation.style.display = 'flex';
 
     form.scrollIntoView({ behavior: "smooth", block: "start" }); updateOutput
 
@@ -293,6 +297,16 @@ function calculatePrice() {
 }
 
 function updateOutput(type = false, frontGlassItem) {
+    var calculateButton = document.getElementById('calculateButton');
+    var priceBox = document.getElementsByClassName('price-box')[0];
+    var information = document.getElementById('information');
+    var form = document.getElementById('form');
+
+    if(priceBox) { priceBox.style.display = 'none'; }
+    if(calculateButton) { calculateButton.style.display = 'inline'; }
+    if(information) { information.style.display = 'none'; }
+    if(form) { form.style.display = 'none'; }
+
     var nightMode = document.getElementById('nightMode').checked;
 
     if (nightMode) {
@@ -321,6 +335,7 @@ function updateOutput(type = false, frontGlassItem) {
         var sideGlassPaneright = document.getElementById('sideWindowGlassRight');
 
         var verandaWidth = calculateVerandaWidth(verandaWidthElem);
+        var verandaDepth = verandaDepthElem.value;
         var verandaColor = getVerandaColor(verandaColorElem);
         var roofGlassType = getRoofGlassType(roofGlassTypeElem);
         var frontGlassType = getFrontGlassType(frontGlassExistElem, frontGlassNonExistElem, frontGlassItem != null ? frontGlassItem : document.getElementById('front-glass-type-exist').checked ? true : false);
@@ -332,6 +347,14 @@ function updateOutput(type = false, frontGlassItem) {
             frontGlassType + "_" + sideGlassPane;
 
         var verandaType = $("input[name='veranda-type']:checked").val();
+        setResultText(verandaType, 
+            verandaColor == 1 ? languages[currentLanguage]['colors.antrasit'] : languages[currentLanguage]['colors.white'],
+            verandaWidthElem.value + ' X ' + verandaDepth,
+            roofGlassType == 1 ? languages[currentLanguage]['item.glass'] : roofGlassType == 2 ? languages[currentLanguage]['item.colorful-polycarbon'] : languages[currentLanguage]['item.transparent-polycarbon'],
+            document.getElementById('sideWindowLeft').checked || document.getElementById('sideWindowRight').checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no'],
+            document.getElementById('sideWindowAluLeft').checked || document.getElementById('sideWindowAluRight').checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no'],
+            sideGlassPaneLeft.checked || sideGlassPaneright.checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no']
+        );
         if (verandaType != null) {
             var verandaTypeElements = document.getElementsByClassName('verandaType');
 
@@ -357,7 +380,7 @@ function updateOutput(type = false, frontGlassItem) {
         }
 
         if (!type) {
-            document.getElementById('image').src = "assets/light/" + image + ".jpg"; // İmage path'i buraya uygun olarak güncellenmeli
+            document.getElementById('image').src = "assets/light/" + image + ".jpg";
             document.getElementById('veranda-width-text').textContent = verandaWidthElem.value;
         }
         else {
@@ -370,17 +393,28 @@ function updateOutput(type = false, frontGlassItem) {
             var leftGlassElem = document.getElementById('sideWindowGlassLeft');
             var rightGlassElem = document.getElementById('sideWindowGlassRight');
 
-            if (leftAluminumElem.checked || rightAluminumElem.checked) {
+            
+            if(leftAluminumElem.checked) {
+                image_close = 'aluminum_left_' + verandaColor;
+            }
+            
+            if(rightAluminumElem.checked) {
+                image_close = 'aluminum_right_' + verandaColor;
+            }
+            
+            if (leftAluminumElem.checked && rightAluminumElem.checked) {
                 image_close = 'aluminum_' + verandaColor;
             }
 
-            if (leftGlassElem.checked || rightGlassElem.checked) {
-                if (leftGlassElem.checked) {
-                    image_close = 'glass_' + verandaColor + '_2';
-                }
-                if (rightGlassElem.checked) {
-                    image_close = 'glass_' + verandaColor + '_1';
-                }
+            if (leftGlassElem.checked) {
+                image_close = 'glass_' + verandaColor + '_2';
+            }
+            if (rightGlassElem.checked) {
+                image_close = 'glass_' + verandaColor + '_1';
+            }
+
+            if (leftGlassElem.checked && rightGlassElem.checked) {
+                image_close = 'glass_' + verandaColor;
             }
 
             document.getElementById('image').src = "assets/close/" + image_close + ".jpg"; // İmage path'i buraya uygun olarak güncellenmeli
@@ -417,7 +451,7 @@ function updateOutput(type = false, frontGlassItem) {
             option.value = value;
             option.text = text;
             selectElement.add(option);
-        }
+        }        
     }
 }
 
@@ -427,6 +461,18 @@ function formSubmit() {
 
         loadImageAndSend();
     });
+}
+
+function setResultText(type, color, dimensions, coverage, skewer, aluminum, glass) {
+    document.getElementById('info-type').textContent = languages[currentLanguage][type];
+    document.getElementById('info-color').textContent = color;
+    document.getElementById('info-dimensions').textContent = dimensions;
+    document.getElementById('info-coverage').textContent = coverage;
+    document.getElementById('info-skewer').textContent = skewer;
+    document.getElementById('info-Aluminum').textContent = aluminum;
+    document.getElementById('info-GlassWall').textContent = glass;
+
+    document.getElementById('info-result').style.display = 'none';
 }
 
 function loadImageAndSend() {
@@ -454,7 +500,6 @@ function loadImageAndSend() {
     if (rightAluminumElem.checked) sidePane += languages[currentLanguage]['direction.right'] + ' ' + languages[currentLanguage]['aluminumWindow'] + ' ';
     if (leftGlassElem.checked) sidePane += languages[currentLanguage]['direction.left'] + ' ' + languages[currentLanguage]['glassWindow'] + ' ';
     if (rightGlassElem.checked) sidePane += languages[currentLanguage]['direction.right'] + ' ' + languages[currentLanguage]['glassWindow'] + ' ';
-
 
     var img = new Image();
     img.crossOrigin = 'Anonymous';
