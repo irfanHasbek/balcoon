@@ -17,7 +17,7 @@
 
     <div class="container mt-2">
         <div class="row" style="justify-content: space-between;">
-            <div class="col-md-8 p-2 m-0">
+            <div class="col-md-8 p-2 m-0 sticky-parent sticky">
                 <div class="row">
                     <div style="position: relative;width: 100%;">
                         <div class="switch-container">
@@ -29,11 +29,11 @@
                             </label>
                         </div>
                         <img src="assets/icon.png" id="trade-marker" alt="">
-                        <img class="rounded" src="assets/light/image_1_1_1_1_0_0.jpg" alt="Ev Resmi" id="image"
-                            class="img-fluid">
+                        <img class="rounded" src="assets/light/image_1_1_1_1_0_0.jpg" alt="Ev Resmi" id="image" class="img-fluid">
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-4 p-2 m-0" id="options-container">
 
                 <div class="accordion" id="accordingMCA">
@@ -360,7 +360,7 @@
             </div>
             <div class="row" id="info-result" style="display: none;">
                 <div id="information" class="col-lg-8 col-sm-12 p-0 m-0">
-                    <table>
+                    <table style="margin: 10px;">
                         <tr style="border-left: 5px solid #ba5553; font-weight: bold; font-size: 18px;border-radius: 5px;">
                             <td style="padding-left: 5px;">
                                 <span data-translate="result-information"></span>
@@ -368,7 +368,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <span style="margin-top: 50px;" data-translate="result-information-2"></span>
+                                <span style="margin-top: 50px;text-align: justify;" data-translate="result-information-2"></span>
                             </td>
                         </tr>
                     </table>

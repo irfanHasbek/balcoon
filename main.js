@@ -561,3 +561,20 @@ function loadImageAndSend() {
         }, 'image/jpeg');
     };
 }
+
+window.addEventListener('scroll', function() {
+    const stickyParent = document.getElementsByClassName('sticky')[0];
+    const spacer = document.getElementsByClassName('price-box')[0];
+    const submitBtn = this.document.getElementById('submitBtn');
+
+    const spacerBounds = spacer.getBoundingClientRect();
+    const submitBtnBounds = submitBtn.getBoundingClientRect();
+
+    // Eğer alt div viewport içindeyse, sticky özelliğini kaldır
+    if ((submitBtnBounds.top < window.innerHeight && submitBtnBounds.bottom > 0)) {
+        stickyParent.classList.remove('sticky-parent');
+    } else {
+        // Aksi takdirde, sticky özelliğini ekle
+        stickyParent.classList.add('sticky-parent');
+    }
+});
