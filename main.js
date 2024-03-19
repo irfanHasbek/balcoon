@@ -154,11 +154,19 @@ function changeAluminum(clickedNo = false) {
     var leftAluminumElem = document.getElementById('sideWindowAluLeft');
     var rightAluminumElem = document.getElementById('sideWindowAluRight');
 
+    var noGlassElem = document.getElementById('sideWindowGlassNo');
+    var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+    var rightGlassElem = document.getElementById('sideWindowGlassRight');
+
     if (clickedNo) {
         leftAluminumElem.checked = false;
         rightAluminumElem.checked = false;
     } else {
         noAluminumElem.checked = false;
+
+        leftGlassElem.checked = false;
+        rightGlassElem.checked = false;
+        noGlassElem.checked = true;
     }
 
     updateOutput(true);
@@ -169,11 +177,19 @@ function changeGlass(clickedNo = false) {
     var leftGlassElem = document.getElementById('sideWindowGlassLeft');
     var rightGlassElem = document.getElementById('sideWindowGlassRight');
 
+    var noAluminumElem = document.getElementById('sideWindowAluNo');
+    var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+    var rightAluminumElem = document.getElementById('sideWindowAluRight');
+
     if (clickedNo) {
         leftGlassElem.checked = false;
         rightGlassElem.checked = false;
     } else {
         noGlassElem.checked = false;
+
+        leftAluminumElem.checked = false;
+        rightAluminumElem.checked = false;
+        noAluminumElem.checked = false;
     }
 
     updateOutput(true);
@@ -379,11 +395,11 @@ function updateOutput(type = false, frontGlassItem) {
             }
         }
 
-        if (!type) {
+        if (!type || (sideGlassPaneLeft.checked && sideGlassPaneright.checked)) {
             document.getElementById('image').src = "assets/light/" + image + ".jpg";
             document.getElementById('veranda-width-text').textContent = verandaWidthElem.value;
         }
-        else {
+        else if(!(sideGlassPaneLeft.checked && sideGlassPaneright.checked)) {
             var image_close = "image_yakin_" + verandaColor + "_" +
                 roofGlassType;
 

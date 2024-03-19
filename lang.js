@@ -39,7 +39,17 @@ const languages = {
     'resultMessage': 'vergi ve kurulum dahil',
     'SuccessMessage': 'Teklif talebiniz alınmıştır.',
     'ErrorMessage': 'Bir hata oluştu',
-    'form-information': 'Hiçbir yükümlülük içermeyen \n teklifinizi buradan isteyin'
+    'form-information': 'Hiçbir yükümlülük içermeyen \n teklifinizi buradan isteyin',
+    'info-type': 'Type',
+    'info-color': 'Color',
+    'info-dimensions': 'Dimensions',
+    'info-coverage': 'Coverage',
+    'info-led': 'LED Lightning',
+    'info-skewer': 'Skewer',
+    'info-aluminum': 'Aluminum fence',
+    'info-GlassWall': 'Glass Wall',
+    'result-information': 'The indicative price for your MFC Veranda',
+    'result-information-2': 'The above indicative price includes installation and required materials.Transport costs are calculated based on the travel distance.This indicative price does not take into account current promotions and/or discounts.No rights can be derived from the above indicative price.'
   },
   'en': {
     'building-type': 'House Type',
@@ -133,7 +143,17 @@ const languages = {
     "resultMessage": "inklusive Montage und MwSt.",
     "SuccessMessage": "Ihre Anfrage wurde erfolgreich erstellt.",
     "ErrorMessage": "Etwas ist schief gelaufen",
-    "form-information": "Bitte fordern Sie hier Ihr unverbindliches Angebot an"
+    "form-information": "Bitte fordern Sie hier Ihr unverbindliches Angebot an",
+    'info-type': 'Type',
+    'info-color': 'Color',
+    'info-dimensions': 'Dimensions',
+    'info-coverage': 'Coverage',
+    'info-led': 'LED Lightning',
+    'info-skewer': 'Skewer',
+    'info-aluminum': 'Aluminum fence',
+    'info-GlassWall': 'Glass Wall',
+    'result-information': 'The indicative price for your MFC Veranda',
+    'result-information-2': 'The above indicative price includes installation and required materials.Transport costs are calculated based on the travel distance.This indicative price does not take into account current promotions and/or discounts.No rights can be derived from the above indicative price.'
   }
 };
 
