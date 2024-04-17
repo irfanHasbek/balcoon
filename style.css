@@ -143,11 +143,11 @@ body {
 
 @media only screen and (max-width: 768px) {
     .sticky-parent {
-        position: sticky;
-        position: -webkit-sticky;
+        position: -webkit-sticky; /* Safari için */
+        position: sticky; /* Diğer tarayıcılar için */
         top: 0; 
         z-index: 1000;
-    }
+    }    
 }
 
 form input {
