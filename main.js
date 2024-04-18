@@ -154,9 +154,9 @@ function changeAluminum(clickedNo = false) {
     var leftAluminumElem = document.getElementById('sideWindowAluLeft');
     var rightAluminumElem = document.getElementById('sideWindowAluRight');
 
-    var noGlassElem = document.getElementById('sideWindowGlassNo');
-    var leftGlassElem = document.getElementById('sideWindowGlassLeft');
-    var rightGlassElem = document.getElementById('sideWindowGlassRight');
+    // var noGlassElem = document.getElementById('sideWindowGlassNo');
+    // var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+    // var rightGlassElem = document.getElementById('sideWindowGlassRight');
 
     if (clickedNo) {
         leftAluminumElem.checked = false;
@@ -164,9 +164,9 @@ function changeAluminum(clickedNo = false) {
     } else {
         noAluminumElem.checked = false;
 
-        leftGlassElem.checked = false;
-        rightGlassElem.checked = false;
-        noGlassElem.checked = true;
+        // leftGlassElem.checked = false;
+        // rightGlassElem.checked = false;
+        // noGlassElem.checked = true;
     }
 
     updateOutput(true);
@@ -177,9 +177,9 @@ function changeGlass(clickedNo = false) {
     var leftGlassElem = document.getElementById('sideWindowGlassLeft');
     var rightGlassElem = document.getElementById('sideWindowGlassRight');
 
-    var noAluminumElem = document.getElementById('sideWindowAluNo');
-    var leftAluminumElem = document.getElementById('sideWindowAluLeft');
-    var rightAluminumElem = document.getElementById('sideWindowAluRight');
+    // var noAluminumElem = document.getElementById('sideWindowAluNo');
+    // var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+    // var rightAluminumElem = document.getElementById('sideWindowAluRight');
 
     if (clickedNo) {
         leftGlassElem.checked = false;
@@ -187,9 +187,9 @@ function changeGlass(clickedNo = false) {
     } else {
         noGlassElem.checked = false;
 
-        leftAluminumElem.checked = false;
-        rightAluminumElem.checked = false;
-        noAluminumElem.checked = false;
+        // leftAluminumElem.checked = false;
+        // rightAluminumElem.checked = false;
+        // noAluminumElem.checked = false;
     }
 
     updateOutput(true);
@@ -431,6 +431,20 @@ function updateOutput(type = false, frontGlassItem) {
 
             if (leftGlassElem.checked && rightGlassElem.checked) {
                 image_close = 'glass_' + verandaColor;
+            }
+
+            if(leftGlassElem.checked && rightAluminumElem.checked) {
+                image_close = 'glass_aluminum';
+                if(frontGlassExistElem.checked) {
+                    image_close += '_front'
+                }
+            }
+
+            if(leftAluminumElem.checked && rightGlassElem.checked) {
+                image_close = 'aluminum_glass';
+                if(frontGlassExistElem.checked) {
+                    image_close += '_front'
+                }
             }
 
             document.getElementById('image').src = "assets/close/" + image_close + ".jpg"; // İmage path'i buraya uygun olarak güncellenmeli
