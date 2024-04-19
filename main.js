@@ -438,12 +438,18 @@ function updateOutput(type = false, frontGlassItem) {
                 if(frontGlassExistElem.checked) {
                     image_close += '_front'
                 }
+                if(verandaColor == '2') {
+                    image_close += '_1';
+                }
             }
 
             if(leftAluminumElem.checked && rightGlassElem.checked) {
                 image_close = 'aluminum_glass';
                 if(frontGlassExistElem.checked) {
                     image_close += '_front'
+                }
+                if(verandaColor == '2') {
+                    image_close += '_1';
                 }
             }
 
