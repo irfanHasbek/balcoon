@@ -85,7 +85,7 @@
                         <div id="collapseVerandaDepth" class="accordion-collapse collapse" aria-labelledby="heading7"
                             data-bs-parent="#accordingMCA">
                             <div class="accordion-body">
-                                <select class="form-control" id="veranda-depth">
+                                <select class="form-control" id="veranda-depth" onchange="updateOutput(false)">
                                     <option value="3" selected>3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
@@ -444,7 +444,7 @@
                                         <td class="info-header" data-translate="info-GlassWall"></td>
                                     </tr>
                                     <tr>
-                                        <td class="info-body" id="info-GlassWall">Standart</td>
+                                        <td class="info-body" id="info-GlassWall"> - </td>
                                     </tr>
                                 </table>
                             </span>

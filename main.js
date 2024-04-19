@@ -154,15 +154,37 @@ function changeAluminum(clickedNo = false) {
     var leftAluminumElem = document.getElementById('sideWindowAluLeft');
     var rightAluminumElem = document.getElementById('sideWindowAluRight');
 
-    // var noGlassElem = document.getElementById('sideWindowGlassNo');
-    // var leftGlassElem = document.getElementById('sideWindowGlassLeft');
-    // var rightGlassElem = document.getElementById('sideWindowGlassRight');
+    var noGlassElem = document.getElementById('sideWindowGlassNo');
+    var leftGlassElem = document.getElementById('sideWindowGlassLeft');
+    var rightGlassElem = document.getElementById('sideWindowGlassRight');
 
     if (clickedNo) {
         leftAluminumElem.checked = false;
         rightAluminumElem.checked = false;
     } else {
         noAluminumElem.checked = false;
+
+        if(rightAluminumElem.checked){
+            rightGlassElem.checked = false;
+            rightGlassElem.disabled =true;
+        }else {
+            // rightGlassElem.checked = false;
+            rightGlassElem.disabled =false;
+        }
+
+        if(leftAluminumElem.checked){
+            leftGlassElem.checked = false;
+            leftGlassElem.disabled =true;
+        }else {
+            // leftGlassElem.checked = false;
+            leftGlassElem.disabled =false;
+        }
+
+        if(rightAluminumElem.checked && leftAluminumElem.checked){
+            noGlassElem.checked = true;
+        }else {
+            noGlassElem.checked = false;
+        }
 
         // leftGlassElem.checked = false;
         // rightGlassElem.checked = false;
@@ -177,15 +199,37 @@ function changeGlass(clickedNo = false) {
     var leftGlassElem = document.getElementById('sideWindowGlassLeft');
     var rightGlassElem = document.getElementById('sideWindowGlassRight');
 
-    // var noAluminumElem = document.getElementById('sideWindowAluNo');
-    // var leftAluminumElem = document.getElementById('sideWindowAluLeft');
-    // var rightAluminumElem = document.getElementById('sideWindowAluRight');
+    var noAluminumElem = document.getElementById('sideWindowAluNo');
+    var leftAluminumElem = document.getElementById('sideWindowAluLeft');
+    var rightAluminumElem = document.getElementById('sideWindowAluRight');
 
     if (clickedNo) {
         leftGlassElem.checked = false;
         rightGlassElem.checked = false;
     } else {
         noGlassElem.checked = false;
+
+        if(rightGlassElem.checked){
+            rightAluminumElem.checked = false;
+            rightAluminumElem.disabled =true;
+        }else {
+            // rightAluminumElem.checked = false;
+            rightAluminumElem.disabled =false;
+        }
+
+        if(leftGlassElem.checked){
+            leftAluminumElem.checked = false;
+            leftAluminumElem.disabled =true;
+        }else {
+            // leftAluminumElem.checked = false;
+            leftAluminumElem.disabled =false;
+        }
+
+        if(rightGlassElem.checked && leftGlassElem.checked){
+            noAluminumElem.checked = true;
+        }else {
+            noAluminumElem.checked = false;
+        }
 
         // leftAluminumElem.checked = false;
         // rightAluminumElem.checked = false;
@@ -300,7 +344,7 @@ function calculatePrice() {
     information.style.display = 'block';
     resultInformation.style.display = 'flex';
 
-    form.scrollIntoView({ behavior: "smooth", block: "start" }); updateOutput
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
 
     var priceBoxElem = document.getElementsByClassName('price-box');
     var resultSpanElem = document.getElementById('price-result');
@@ -369,7 +413,7 @@ function updateOutput(type = false, frontGlassItem) {
             roofGlassType == 1 ? languages[currentLanguage]['item.glass'] : roofGlassType == 2 ? languages[currentLanguage]['item.colorful-polycarbon'] : languages[currentLanguage]['item.transparent-polycarbon'],
             document.getElementById('sideWindowLeft').checked || document.getElementById('sideWindowRight').checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no'],
             document.getElementById('sideWindowAluLeft').checked || document.getElementById('sideWindowAluRight').checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no'],
-            sideGlassPaneLeft.checked || sideGlassPaneright.checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no']
+            sideGlassPaneLeft.checked || sideGlassPaneright.checked || frontGlassExistElem.checked ? languages[currentLanguage]['question.yes'] : languages[currentLanguage]['question.no']
         );
         if (verandaType != null) {
             var verandaTypeElements = document.getElementsByClassName('verandaType');
@@ -475,7 +519,7 @@ function updateOutput(type = false, frontGlassItem) {
         if (roofGlassType === 2) {
             verandaDepthElem.value = currentVerandaDepthValue;
         } else {
-            if (currentVerandaDepthValue < 5) {
+            if (currentVerandaDepthValue <= 5) {
                 verandaDepthElem.value = currentVerandaDepthValue;
             } else {
                 verandaDepthElem.value = 3;
