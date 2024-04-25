@@ -447,12 +447,29 @@ function updateOutput(type = false, frontGlassItem) {
             var image_close = "image_yakin_" + verandaColor + "_" +
                 roofGlassType;
 
+            var leftSpiceElem = document.getElementById('sideWindowLeft');
+            var rightSpiceElem = document.getElementById('sideWindowRight');
+
             var leftAluminumElem = document.getElementById('sideWindowAluLeft');
             var rightAluminumElem = document.getElementById('sideWindowAluRight');
 
             var leftGlassElem = document.getElementById('sideWindowGlassLeft');
             var rightGlassElem = document.getElementById('sideWindowGlassRight');
 
+            if(leftSpiceElem.checked) {
+                image_close = 'spice_l';
+                if(verandaColor == '2') image_close += '_2';
+            }
+
+            if(rightSpiceElem.checked) {
+                image_close = 'spice_r';
+                if(verandaColor == '2') image_close += '_2';
+            }
+
+            if(leftSpiceElem.checked && rightSpiceElem.checked) {
+                image_close = 'spice_lr';
+                if(verandaColor == '2') image_close += '_2';
+            }
             
             if(leftAluminumElem.checked) {
                 image_close = 'aluminum_left_' + verandaColor;
